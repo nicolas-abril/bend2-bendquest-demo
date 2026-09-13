@@ -1,0 +1,9 @@
+{
+  "stale_birth_world": "Boundary.observe",
+  "stale_birth_record": "Boundary.observe",
+  "stale_wait_record": "Boundary.observe",
+  "skipped_command_world": "Boundary.observe",
+  "false_birth_marker": "Boundary.observe",
+  "stale_lookup_record": "Boundary.lookup",
+  "assumed_boundary_validity": "Boundary.valid"
+}

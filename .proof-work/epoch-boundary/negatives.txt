@@ -1,0 +1,2 @@
+PASS prepared seven intended negative mutations.
+PASS seven intended negative checks: stale birth world, stale birth record, stale wait record, skipped command world, false birth marker, stale lookup record, assumed boundary validity.

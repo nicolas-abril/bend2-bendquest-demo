@@ -1,0 +1,6 @@
+.build/
+bendquest_db.txt
+bendquest_db.txt.tmp*
+bq_*.png
+__pycache__/
+bendquest

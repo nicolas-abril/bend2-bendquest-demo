@@ -1,0 +1,3 @@
+PASS rejected invalid/pre-create commands, UTF-8 identification, pre-create rename, online reservation, repeated HELLO preserves gameplay/profile/PID, duplicate CREATE, disconnect and reconnect
+ARTIFACTS /var/folders/rg/h0_4_ww91836bk315x2n0qfm0000gn/T/bendquest-session-check-m46cf22u
+TRANSCRIPTS /var/folders/rg/h0_4_ww91836bk315x2n0qfm0000gn/T/bendquest-session-check-m46cf22u

@@ -1,0 +1,29 @@
+Error:
+- expected : Boundary.OK<current, Boundary.point(rest, live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan)), monster, tail, start, current)>
+- observed : Boundary.OK<current, Boundary.point(rest, live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan)), monster, tail, live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(start, now), kind, pid, score), plan)), current)>
+Context:
+- entries      : List<&2, combat_history.History.Entry>
+- world        : terrain.Terrain.World
+- monster      : monsters.Monsters.State
+- now          : U32
+- kind         : combat.Combat.Kind
+- pid          : U32
+- score        : U32
+- plan         : live_combat.LiveCombat.Plan
+- rest         : List<&2, combat_history.History.Entry>
+- shape        : {entries == Con{combat_history.History.Entry{world, combat_history.History.Command{now, kind, pid, score, plan}, live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan))}, rest} : List<&2, combat_history.History.Entry>}
+- dead         : {vitals.Vitals.dead(monsters.Monsters.vitals(monster)) == U32{WCon{True{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WNil{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} : U32}
+- actual       : live_combat.LiveCombat.Result
+- same         : {actual == live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan) : live_combat.LiveCombat.Result}
+- safe         : live_dead.LiveDead.Safe<monster, actual>
+- tail         : epoch_history.Epoch.Follow<rest, live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan)), monster>
+- later        : @+start:terrain.Terrain.World -> @+current:monsters.Monsters.State -> @+world_same:{start == live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan)) : terrain.Terrain.World} -> @+monster_same:{current == monster : monsters.Monsters.State} -> Boundary.OK<current, Boundary.point(rest, live_combat.LiveCombat.world(live_combat.LiveCombat.finish(live_combat.LiveCombat.prepare(world_clock.WorldClock.set(world, now), kind, pid, score), plan)), monster, tail, start, current)>
+- operation    : combat_history.History.Operation
+- start        : terrain.Terrain.World
+- current      : monsters.Monsters.State
+- world_same   : {start == world : terrain.Terrain.World}
+- monster_same : {current == monster : monsters.Monsters.State}
+Location: Boundary.observe
+107 |       +operation = {H.History.Command{now,kind,pid,score,plan} : H.History.Operation}
+108>|       (start => (current => (world_same => (monster_same => later(H.History.step(start,operation),current,Equal.cong(T.Terrain.World,T.Terrain.World,(w => H.History.step(w,operation)),start,world,world_same),monster_same)))))
+109 | 

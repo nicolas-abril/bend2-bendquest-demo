@@ -1,0 +1,16 @@
+[bendquest] headless server starting on port 4982
+[bendquest] server listening on port 4982 (world 1)
+[bendquest] connection #1
+[bendquest] hello: alpha
+[bendquest] hello: Étoile
+[bendquest] connection #2
+[bendquest] hello: observer
+[bendquest] observer joined as pid 1
+[bendquest] Étoile joined as pid 2
+[bendquest] connection #3
+[bendquest] hello: renamed
+[bendquest] renamed joined as pid 3
+[bendquest] gone: #1 Étoile
+[bendquest] connection #4
+[bendquest] hello: Étoile
+[bendquest] Étoile joined as pid 4

@@ -1,0 +1,1045 @@
+PASS original kernel, numeric, health, growth, reward, vital-state, monster, roster, AI-list, zone-conservation, player-list, tick-composition, inventory-command, kill-payout, navigation, interaction, combat-admission, battle-composition, terrain/movement, player-locomotion, seeded-landscape, monster-position, active-monster-planning, seeded-population, complete-position-tick, monster-ID-uniqueness, allocation/admission, player-ID-preservation, monster-target-reference, command-reference-preservation, authoritative-target-selection, complete-tick-reference, nonzero-player/connection-ID, combined-pure-world-state, connection-lifecycle, bidirectional-connection-roster, connection-selection, joint-player-creation, joint-disconnect, command-binding-correspondence, complete-tick-binding, bounded-allocation-success, exact-allocation-successor, complete-allocation/capacity, successful-world-reconstruction, connection-rebinding, complete-pure-restart/trace, live-channel-restart, reconstruction-metadata, and stored-seed/map/mixed-trace and live-clock-update and authoritative-tick/output and live-inventory/interaction/output and live-combat/output and combat-target-selection/planning and indexed-spin-plan and sequential-combat-frame and current-attacker and admitted-actor and live-spin-planner and live-attack-planner and completed-combat-repeat and unconditional-combat-repeat and clock-combat-repeat and finite-combat-spam and player-cooldown-upkeep and live-tick-cooldown-roster and tracked-tick-cooldown and mixed-combat-cooldown and foreign-combat-frame and arbitrary-combat-stream and partial-cooldown-tick and exact-combat-transition and mixed-live-history and quantitative-cooldown and lethal-attack-reward and lethal-spin-reward and dead-monster-reward-trace and exactly-once-lethal-reward and live-dead-reward-history and actual-lethal-attack-history and actual-lethal-spin-history and mixed-damage-spin-history and monster-lifetime-boundary and planned-zone-lifetime and actual-live-tick-lifetime and permanent-death-mixed-history and ordinary-respawn-prefix and ordinary-lifetime-once proofs
+PASS purchase
+PASS insufficient gold
+PASS empty quaff
+PASS player damage cap
+PASS monster damage cap
+PASS left boundary
+PASS right boundary
+PASS UTF-8 round trip
+PASS healing near U32 maximum
+PASS healing with maximum amount
+PASS ordinary capped healing
+PASS damage saturates at zero
+PASS nonlethal damage
+PASS clamping invalid health
+PASS maximum above U32 range
+PASS maximum plus charm saturates
+PASS ordinary charm maximum
+PASS level-up maximum
+PASS vitality-up maximum
+PASS XP below threshold
+PASS XP exact threshold
+PASS XP multiple levels and charm
+PASS XP level cap
+PASS XP already capped
+PASS XP zero fuel
+PASS XP one-step budget
+PASS server XP adapter
+PASS server maximum adapter
+PASS server gold grant
+PASS server item grant
+PASS side quest potion grant
+PASS side quest first item
+PASS side quest second item
+PASS side quest retains health charm
+PASS nonlethal vital hit
+PASS exact lethal vital hit
+PASS overkill vital hit
+PASS dead hit preserves timer
+PASS zero damage stays alive
+PASS respawn timer waits
+PASS respawn timer expires
+PASS zero timer respawns
+PASS live tick regenerates
+PASS live tick caps healing
+PASS zero cooldown stays zero
+PASS hero maximum respawn
+PASS server repeated hit list
+PASS server respawn adapter
+PASS monster nonlethal hit
+PASS monster lethal hit
+PASS monster overkill
+PASS monster dead hit no-op
+PASS monster cooldown tick
+PASS Maw regeneration
+PASS Maw regeneration cap
+PASS monster respawn waits
+PASS monster respawn ready
+PASS boss stays dead
+PASS positive monster initialization
+PASS zero maximum is normalized
+PASS server lethal kill metadata
+PASS server repeated kill rejected
+PASS server permanent boss death
+PASS server monster wait
+PASS server live Maw regeneration
+PASS server monster respawn
+PASS server monster cooldown blocks attack
+PASS server adjacent monster attacks
+PASS roster first lookup
+PASS roster middle lookup
+PASS roster last lookup
+PASS roster missing lookup
+PASS roster empty lookup
+PASS roster zero ID
+PASS roster maximum ID
+PASS roster first duplicate
+PASS roster middle lethal strike
+PASS roster missing strike no-op
+PASS roster concatenation
+PASS server middle lookup
+PASS server middle strike
+PASS AI rest applies upkeep once
+PASS AI movement preserves vitals
+PASS AI blocked attack plan
+PASS AI ready attack plan
+PASS AI live spawn plan ignored
+PASS AI permanent boss ignores spawn
+PASS AI dead monster cannot attack
+PASS AI respawn cannot attack
+PASS AI respawn uses original ID and zone
+PASS AI missing plans preserve list
+PASS AI extra plans create no monsters
+PASS AI four-zone composition
+PASS server four-zone AI composition
+PASS player first lookup
+PASS player middle lookup
+PASS player last lookup
+PASS player missing lookup
+PASS player duplicate selects first
+PASS player maximum ID
+PASS player ordered hit list
+PASS player missing attacks are no-ops
+PASS dead player full record unchanged
+PASS player upkeep heals once
+PASS player upkeep off regeneration tick
+PASS dead player ignores movement plan
+PASS player respawn retains profile
+PASS player mixed upkeep list
+PASS player extra plans create no players
+PASS player missing plan retains position
+PASS server full player hit list
+PASS server full player upkeep list
+PASS server fresh player profile
+PASS player Unicode name round trip
+PASS server movement through spawn passage
+PASS active tick orders upkeep AI and hits
+PASS phase zero freezes gameplay
+PASS completed phase freezes gameplay
+PASS unknown phase freezes gameplay
+PASS empty active tick
+PASS tick word boundary is explicit
+PASS prepared players expose completed upkeep
+PASS preparation retains original monsters
+PASS AI hit conversion preserves ordered payloads
+PASS successive ticks preserve lifecycle order
+PASS server AI targets players after movement
+PASS server inactive tick retains snapshot clock
+PASS inventory purchase exact item and gold
+PASS inventory distant shop rejects
+PASS inventory insufficient gold exact no-op
+PASS inventory unsold item rejected
+PASS inventory potion consumes and heals
+PASS inventory empty potion exact no-op
+PASS inventory huge count potion heals
+PASS inventory healing saturates
+PASS inventory dead potion no-op
+PASS inventory dead purchase no-op
+PASS inventory dead allocation no-op
+PASS inventory equip transfers sword
+PASS inventory occupied slot rejects
+PASS inventory unequip restores sword
+PASS inventory charm removal clamps health
+PASS inventory charm equip does not heal
+PASS inventory vitality spends one point
+PASS inventory no points no-op
+PASS inventory lookup retains other players
+PASS inventory missing target exact roster
+PASS inventory sequential purchases cannot overspend
+PASS server purchase uses checked command
+PASS server shop checks actual position
+PASS server shop checks actual zone
+PASS server unfunded purchase feedback
+PASS server huge potion count heals
+PASS server dead command no feedback
+PASS server charm removal clamps health
+PASS server equip uses checked command
+PASS server allocation clamps wire index
+PASS payout XP gold and main quest compose
+PASS payout retains one health through level up
+PASS payout retains dead vital state
+PASS side quest increments only selected counter
+PASS side quest completion grants three potions
+PASS claimed side quest exact no-op
+PASS invalid side quest exact no-op
+PASS second side quest pays correct item
+PASS third side quest pays correct item
+PASS missing loot preserves complete player
+PASS first rare loot grants item and find score
+PASS repeat loot grants item without find score
+PASS side quest and loot rewards both retained
+PASS sigil advances only matching players
+PASS nonwarden kill does not advance quests
+PASS world payout conserves all players
+PASS missing killer retains roster
+PASS payout sequence preserves successive XP
+PASS server rare kill applies full payout
+PASS server missing killer leaves world intact
+PASS server rare kill preserves maps and monsters
+PASS move masks direction and retains coordinates
+PASS move masks direction four to zero
+PASS halt retains direction and complete profile
+PASS elder starts quest and credits score
+PASS elder repeat conversation does not pay twice
+PASS elder later stage remains unchanged
+PASS elder diagonal radius boundary
+PASS elder outside radius no-op
+PASS elder wrong zone no-op
+PASS unknown NPC no-op
+PASS shop conversation preserves quest and score
+PASS NPC choice respected in overlapping range
+PASS distant maximum coordinate cannot wrap near NPC
+PASS portal Hollow to Cavern
+PASS portal Cavern to Frost
+PASS portal Rift gate sealed without sigils
+PASS portal Rift gate rejects partial sigils
+PASS portal Rift gate opens with three sigils
+PASS portal Rift gate rejects malformed sigils
+PASS portal cannot advance beyond Rift
+PASS portal cannot return before Hollow
+PASS portal Cavern returns to Hollow
+PASS portal Frost returns to Cavern
+PASS portal Rift returns to Frost
+PASS portal rejects adjacent nonportal tile
+PASS interaction missing target preserves roster
+PASS interaction lookup preserves other records
+PASS interaction repeated talks cannot farm score
+PASS server movement uses checked controls
+PASS server halt uses checked controls
+PASS server elder starts quest once
+PASS server elder repeat retains score
+PASS server missing talk no-op
+PASS server portal preserves maps monsters metadata
+PASS server sealed gate leaves full world intact
+PASS server reads actual sigils for Rift gate
+PASS server return portal sends destination
+PASS attack sets four tick cooldown only
+PASS spin sets twenty five tick cooldown only
+PASS dead attack exact no-op
+PASS dead spin exact no-op
+PASS cooling attack exact no-op
+PASS cooling spin exact no-op
+PASS maximum attack cooldown stays blocked
+PASS maximum spin cooldown stays blocked
+PASS inactive attack exact no-op
+PASS ended spin exact no-op
+PASS unknown phase exact no-op
+PASS attack spam does not restart cooldown
+PASS spin spam does not restart cooldown
+PASS attack and spin retain independent cooldowns
+PASS missing attacker preserves full roster
+PASS empty roster cannot admit an attacker
+PASS lookup commits exact admitted player
+PASS rejected lookup keeps other complete records
+PASS duplicate ID still selects first occurrence
+PASS server dead attack has no damage or output
+PASS server dead spin has no damage or output
+PASS server inactive attack has no damage or output
+PASS server missing attacker leaves world unchanged
+PASS server empty attack still consumes cooldown
+PASS server empty spin still emits animation
+PASS server attack damages one target and resets cooldown
+PASS server spin damages both targets in order
+PASS server repeated attack deals no additional damage
+PASS server repeated spin deals no additional damage
+PASS server attack then spin retains both cooldowns
+PASS server cooling attack cannot emit effects
+PASS server cooling spin cannot emit effects
+PASS server unknown phase cannot spin
+PASS server attack leaves other players unchanged
+PASS nonlethal hit cannot pay supplied rewards
+PASS zero damage cannot pay supplied rewards
+PASS missing monster preserves complete state
+PASS dead monster produces no second payout
+PASS lethal hit pays exact gold score and kill credit
+PASS actual slain kind overrides mismatched reward kind
+PASS missing killer retains death but grants no reward
+PASS repeated lethal inputs pay only the first death
+PASS sequential hits observe previous damage
+PASS sequential kills preserve reward notice snapshots
+PASS first warden grants sigil and permanent death
+PASS second warden grants second sigil
+PASS third warden grants third sigil
+PASS final boss ends phase and captures finish time
+PASS spin retains intermediate game over snapshot
+PASS sigil notice distinguishes award from advanced roster
+PASS empty strike sequence is an exact no-op
+PASS rejected admission discards a lethal plan
+PASS ready command commits cooldown before payout
+PASS ready spin commits cooldown before all payouts
+PASS inactive command cannot execute supplied boss hit
+PASS missing actor cannot execute supplied boss hit
+PASS cooling actor cannot execute supplied boss hit
+PASS map lookup first cell
+PASS map lookup last column
+PASS map lookup next row
+PASS map lookup last grid cell
+PASS x outside grid cannot alias next row
+PASS y outside grid is solid
+PASS maximum x cannot wrap into a valid row
+PASS large y cannot wrap its row offset
+PASS invalid zone cannot read a fifth map
+PASS maximum zone is solid
+PASS missing map is solid
+PASS missing cell is solid
+PASS all six solid tile classes reject walking
+PASS all other game tile classes allow walking
+PASS shared map conversion retains all cells
+PASS left move changes only x
+PASS right move changes only x
+PASS up move changes only y
+PASS down move changes only y
+PASS legacy unknown direction still selects down
+PASS left boundary does not underflow
+PASS right boundary does not overflow
+PASS top boundary does not underflow
+PASS bottom boundary does not overflow
+PASS solid destination preserves complete position
+PASS halted player does not walk
+PASS nonzero moving flag walks
+PASS monster cannot enter village boundary
+PASS monster can approach outside village
+PASS village restriction is local to Hollow
+PASS monster collision still rejects solid tile
+PASS server player movement uses checked map
+PASS server player collision uses checked map
+PASS server monster movement honors village
+PASS server halted movement preserves coordinates
+PASS server tile lookup rejects row alias
+PASS world reconstruction retains maps and full simulation
+PASS planner commits an open step
+PASS planner retains position at a wall
+PASS planner respects halt
+PASS planner accepts any nonzero moving flag
+PASS planner preserves roster order
+PASS inactive planning returns no plans
+PASS upkeep moves and regenerates exactly once
+PASS collision blocks movement but permits regeneration
+PASS halted upkeep retains position and profile
+PASS dead upkeep ignores a proposed open step
+PASS respawn replaces movement with the spawn position
+PASS whole upkeep applies aligned plans and respawn
+PASS begin exposes moved and revived players to AI
+PASS inactive begin retains complete players
+PASS complete tick orders movement revival and hits
+PASS tick trace moves survivors and keeps dead players still
+PASS inactive tick does not execute movement or attacks
+PASS unknown phase does not execute movement or attacks
+PASS tick wrap retains movement and timer semantics
+PASS empty roster tick cannot create a player
+PASS lethal hits halt at the current walkable position
+PASS server upkeep uses the checked planner
+PASS server tick preserves full state at a wall
+PASS server inactive tick preserves full state and maps
+PASS all four maps have 510 cells seed 0
+PASS full portal corridor walks both ways seed 0
+PASS all six portal crossings land on floor seed 0
+PASS spawn can walk to both village NPCs seed 0
+PASS all four maps have 510 cells seed 17
+PASS full portal corridor walks both ways seed 17
+PASS all six portal crossings land on floor seed 17
+PASS spawn can walk to both village NPCs seed 17
+PASS all four maps have 510 cells seed 2147483648
+PASS full portal corridor walks both ways seed 2147483648
+PASS all six portal crossings land on floor seed 2147483648
+PASS spawn can walk to both village NPCs seed 2147483648
+PASS all four maps have 510 cells seed 4294967295
+PASS full portal corridor walks both ways seed 4294967295
+PASS all six portal crossings land on floor seed 4294967295
+PASS spawn can walk to both village NPCs seed 4294967295
+PASS word hash vector 0 0
+PASS word hash vector 1 509
+PASS word hash vector 4294967295 4294967295
+PASS word hash vector 2147483648 510
+PASS raw generation clips the last two leaves
+PASS out of range map update preserves all cells
+PASS horizontal chase wins equal-axis tie
+PASS vertical chase wins larger distance
+PASS blocked horizontal chase tries vertical
+PASS blocked vertical chase tries horizontal
+PASS both blocked chase axes retain position
+PASS same target position retains position
+PASS horizontal wall with no vertical distance retains position
+PASS chase cannot enter village
+PASS huge target coordinates still move one tile
+PASS inactive wander clears target
+PASS active wander commits cardinal move
+PASS ready adjacent plan carries target and damage
+PASS cooling adjacent plan retains position and target
+PASS chase runs on scheduled tick
+PASS chase waits on alternate tick
+PASS missing target clears previous target
+PASS wrapped tick preserves chase schedule
+PASS server AI uses checked active chase
+PASS server AI uses checked adjacent attack
+PASS base remainder boundary 0
+PASS base remainder boundary 1
+PASS base remainder boundary 12
+PASS base remainder boundary 13
+PASS base remainder boundary 25
+PASS base remainder boundary 26
+PASS base remainder boundary 27
+PASS base remainder boundary 2147483648
+PASS base remainder boundary 4294967295
+PASS initial world has 31 distinct healthy walkable monsters seed 0
+PASS ordinary monsters respawn and bosses stay dead seed 0
+PASS spawn outside village on walkable tile seed 0 zone 0
+PASS spawn outside village on walkable tile seed 0 zone 1
+PASS spawn outside village on walkable tile seed 0 zone 2
+PASS spawn outside village on walkable tile seed 0 zone 3
+PASS initial world has 31 distinct healthy walkable monsters seed 17
+PASS ordinary monsters respawn and bosses stay dead seed 17
+PASS spawn outside village on walkable tile seed 17 zone 0
+PASS spawn outside village on walkable tile seed 17 zone 1
+PASS spawn outside village on walkable tile seed 17 zone 2
+PASS spawn outside village on walkable tile seed 17 zone 3
+PASS initial world has 31 distinct healthy walkable monsters seed 2147483648
+PASS ordinary monsters respawn and bosses stay dead seed 2147483648
+PASS spawn outside village on walkable tile seed 2147483648 zone 0
+PASS spawn outside village on walkable tile seed 2147483648 zone 1
+PASS spawn outside village on walkable tile seed 2147483648 zone 2
+PASS spawn outside village on walkable tile seed 2147483648 zone 3
+PASS initial world has 31 distinct healthy walkable monsters seed 4294967295
+PASS ordinary monsters respawn and bosses stay dead seed 4294967295
+PASS spawn outside village on walkable tile seed 4294967295 zone 0
+PASS spawn outside village on walkable tile seed 4294967295 zone 1
+PASS spawn outside village on walkable tile seed 4294967295 zone 2
+PASS spawn outside village on walkable tile seed 4294967295 zone 3
+PASS missing contexts retain monster validity
+PASS extra contexts preserve the single-monster roster
+PASS missing contexts still permit lifecycle respawn
+PASS allocator normal hint
+PASS allocator skips zero
+PASS allocator maximum hint wraps cursor
+PASS allocator skips occupied IDs
+PASS allocator wraps and skips live IDs
+PASS allocator finds wrapped gap
+PASS allocator tolerates duplicate input IDs
+PASS allocator ignores occupied zero
+PASS allocator retains free hint below occupied IDs
+PASS allocator crosses maximum boundary
+PASS allocator checks all candidates within budget
+PASS allocator bounded search reports failure
+PASS allocator zero budget reports failure
+PASS server player allocation preserves full world
+PASS server player allocation normalizes zero
+PASS server player allocation wraps cursor
+PASS server allocation skips occupied player ID
+PASS server allocation wraps past active players
+PASS server rejects sentinel connection ID
+PASS server rejects occupied connection ID
+PASS server repeated creation is exact no-op
+PASS server sequential allocation survives wrap
+PASS exhausted admission preserves full state
+PASS exhausted admission returns no player
+PASS disconnect clears deleted player target
+PASS removal retains another live target
+PASS removal retains zero sentinel
+PASS removal repairs older stale target
+PASS missing removal repairs stale target
+PASS missing removal retains exact valid world
+PASS empty roster clears all nonzero targets
+PASS middle removal retains records and monster order
+PASS last removal retains records
+PASS maximum player ID target cleared
+PASS maximum live player ID target retained
+PASS zero player removal retains zero sentinel
+PASS duplicate player ID retains remaining target
+PASS target lookup uses player ID not connection ID
+PASS dead boss target repair preserves death and cooldown
+PASS live dead-boss target retained exactly
+PASS removal handles empty monster roster
+PASS empty world removal is unchanged
+PASS repeated removal is stable
+PASS sequential disconnects clear both targets
+PASS fresh seed 0 has valid target references
+PASS fresh seed 1 has valid target references
+PASS fresh seed 2147483648 has valid target references
+PASS fresh seed 4294967295 has valid target references
+PASS targets exclude wrong zone dead and village players
+PASS same coordinates in another zone are outside village
+PASS nonzero death flag is ineligible
+PASS filter preserves zero MAX and duplicate input IDs
+PASS village boundary remains excluded
+PASS empty acquisition has no target
+PASS acquisition includes distance three
+PASS acquisition excludes distance four
+PASS diagonal acquisition uses Chebyshev distance
+PASS acquisition keeps earliest equal distance
+PASS acquisition chooses nearer later candidate
+PASS zero ID retains legacy no-target semantics
+PASS maximum player ID can be acquired
+PASS MAX coordinates do not wrap into nearby targets
+PASS large unsigned coordinates remain comparable
+PASS duplicate ID acquisition uses first matching coordinates
+PASS retention includes distance nine
+PASS retention excludes distance ten
+PASS retained target wins over nearer newcomer
+PASS far target triggers reacquisition
+PASS missing target triggers reacquisition
+PASS sentinel triggers acquisition
+PASS empty roster clears current target
+PASS dead current target is replaced
+PASS target in another zone is replaced
+PASS target entering village is released
+PASS server acquire adapter preserves coordinates
+PASS server retention adapter preserves threshold
+PASS server candidate filter delegates checked selector
+PASS server tick context uses checked target
+PASS selected tick acquires an existing player
+PASS selected tick retains an existing reference while cooling
+PASS selected tick clears target when player enters village
+PASS selected tick clears target when player changes zone
+PASS selected tick releases dead player target
+PASS post-upkeep respawn is excluded from monster targets
+PASS movement is applied before target selection
+PASS monster waiting preserves an existing reference
+PASS monster respawn clears its old reference
+PASS zero respawn timer clears old reference
+PASS permanent monster death retains valid reference
+PASS empty player roster leaves zero targets
+PASS empty monster roster cannot acquire a target
+PASS maximum player ID remains referenceable
+PASS tick wrap preserves selected reference
+PASS inactive phase 0 retains references
+PASS inactive phase 2 retains references
+PASS inactive phase 4294967295 retains references
+PASS lethal AI damage leaves referenced player in roster
+PASS lethal AI damage actually kills the target
+PASS ordered simultaneous hits retain target membership
+PASS extra damage entries cannot introduce target IDs
+PASS zone processing selects references from matching rosters
+PASS server finish uses checked reference pipeline
+PASS selected tick trace preserves fresh seed 0 references
+PASS selected tick trace preserves fresh seed 4294967295 references
+PASS mixed create tick remove tick sequence preserves references
+PASS binding preserves connection and profile
+PASS binding accepts allocated MAX PID
+PASS bound player cannot change profile
+PASS fresh HELLO enters creation
+PASS pre-create HELLO can change name
+PASS playing HELLO preserves full descriptor
+PASS playing same-name HELLO stays playing
+PASS playing empty HELLO stays playing
+PASS bound creation state cannot reidentify
+PASS bound fresh state cannot reidentify
+PASS playing zero PID cannot reidentify
+PASS invalid phase cannot identify
+PASS MAX phase cannot identify
+PASS MAX binding is preserved
+PASS empty name rejected without mutation
+PASS one-character name accepted
+PASS twelve-character name accepted
+PASS thirteen-character name rejected
+PASS UTF8 name accepted
+PASS twelve Unicode characters accepted
+PASS thirteen Unicode characters rejected
+PASS playing name collision rejected
+PASS pre-create name reservation respected
+PASS UTF8 name collision rejected
+PASS name lookup checks later connections
+PASS case-sensitive names retain existing behavior
+PASS rejected rename retains original reservation
+PASS bound HELLO sequence preserves descriptor
+PASS pre-create HELLO sequence remains usable
+PASS select empty
+PASS select singleton hit
+PASS select singleton miss
+PASS select first
+PASS select middle
+PASS select last
+PASS select missing
+PASS select zero absent
+PASS select MAX absent
+PASS select zero present
+PASS select MAX present
+PASS select duplicate first
+PASS select duplicate reversed
+PASS select duplicate head
+PASS select payload retained
+PASS selected HELLO missing CID no-op
+PASS selected HELLO late playing stays bound
+PASS selected HELLO middle pre-create rename
+PASS selected HELLO online collision retains descriptor
+PASS selected HELLO later reservation checked
+PASS selected HELLO empty rejected after reordering
+PASS selected HELLO UTF8 selected profile
+PASS selected HELLO MAX binding locked
+PASS legacy descriptor/channel empty
+PASS legacy descriptor/channel singleton hit
+PASS legacy descriptor/channel singleton miss
+PASS legacy descriptor/channel first
+PASS legacy descriptor/channel middle
+PASS legacy descriptor/channel last
+PASS legacy descriptor/channel missing
+PASS legacy descriptor/channel zero absent
+PASS legacy descriptor/channel MAX absent
+PASS legacy descriptor/channel zero present
+PASS legacy descriptor/channel MAX present
+PASS legacy descriptor/channel duplicate first
+PASS legacy descriptor/channel duplicate reversed
+PASS legacy descriptor/channel duplicate head
+PASS legacy descriptor/channel payload retained
+PASS CREATE empty roster
+PASS CREATE before HELLO
+PASS CREATE create player and binding
+PASS CREATE zero hint normalized
+PASS CREATE MAX player ID wraps cursor
+PASS CREATE MAX connection ID
+PASS CREATE existing players retained
+PASS CREATE selection after waiting connection
+PASS CREATE selection among waiting and playing
+PASS CREATE repeated CREATE rejected
+PASS CREATE repeated CREATE moves selected only
+PASS CREATE missing CID unchanged
+PASS CREATE cosmetic denial unchanged
+PASS CREATE denial retains selection order
+PASS CREATE zero connection rejected
+PASS CREATE CID already in world rejected
+PASS CREATE invalid phase rejected
+PASS CREATE MAX phase rejected
+PASS CREATE UTF8 identity retained
+PASS CREATE occupied PID skipped
+PASS CREATE trace double CREATE
+PASS CREATE trace bound rename and CREATE
+PASS CREATE trace two players interleaved
+PASS CREATE trace CREATE before HELLO recovery
+PASS CREATE trace denied then permitted
+PASS CREATE trace name collision then correction
+PASS CREATE zero-PID finish restores previous world
+PASS disconnect empty
+PASS disconnect missing CID exact no-op
+PASS disconnect fresh connection only
+PASS disconnect identified connection only
+PASS disconnect waiting retains existing player
+PASS disconnect fresh retains existing player
+PASS disconnect only bound player
+PASS disconnect first player
+PASS disconnect middle player
+PASS disconnect last player
+PASS disconnect independent roster order
+PASS disconnect mixed waiting and bound
+PASS disconnect multiple monster targets cleared
+PASS disconnect zero CID missing
+PASS disconnect MAX PID and CID
+PASS disconnect UTF8 identity
+PASS disconnect other target and counters unchanged
+PASS disconnect trace repeated gone
+PASS disconnect trace one of two players
+PASS disconnect trace CID reuse with new PID
+PASS disconnect trace waiting disconnect then reuse
+PASS disconnect trace fresh disconnect
+PASS disconnect trace two players disconnect all
+PASS rebuild empty
+PASS rebuild preserves existing roster
+PASS rebuild one
+PASS rebuild multiplayer order
+PASS rebuild reordered old roster
+PASS rebuild resets gameplay retains appearance
+PASS rebuild UTF8 name
+PASS rebuild empty name adapter
+PASS rebuild zero hint
+PASS rebuild MAX hint wraps
+PASS rebuild skips occupied PID
+PASS rebuild MAX collision wraps
+PASS rebuild MAX CID
+PASS rebuild invalid zero CID retains old rejection
+PASS rebuild duplicate CID retains old rejection
+PASS rebuild existing CID retains old rejection
+PASS rebuild seeded population zero
+PASS rebuild seeded population MAX
+PASS rebuild exact reversed roster
+PASS rebuild exact wrapped allocation
+PASS rebind lookup empty keeps default
+PASS rebind lookup first CID
+PASS rebind lookup last CID
+PASS rebind lookup middle CID
+PASS rebind lookup absent keeps old PID
+PASS rebind lookup absent keeps zero
+PASS rebind lookup absent keeps MAX
+PASS rebind lookup MAX PID and CID
+PASS rebind lookup CID differs from PID
+PASS rebind lookup duplicate CID first wins
+PASS rebind lookup zero CID legacy match
+PASS rebind lookup zero PID legacy match
+PASS rebind empty
+PASS rebind fresh waiting unchanged
+PASS rebind named waiting unchanged
+PASS rebind playing changes PID
+PASS rebind opposite roster orders
+PASS rebind mixed waiting and playing
+PASS rebind MAX IDs
+PASS rebind UTF8 identity
+PASS rebind invalid missing player keeps old PID
+PASS rebind invalid phase preserved
+PASS rebind invalid duplicate CID first wins
+PASS rebind server retains descriptor name
+PASS rebind actual reconstruction
+PASS rebind actual reconstruction wraps
+PASS restart empty seed zero
+PASS restart empty MAX values
+PASS restart only waiting
+PASS restart one player
+PASS restart opposite orders
+PASS restart mixed waiting and playing
+PASS restart changed gameplay and styles
+PASS restart Unicode profiles
+PASS restart MAX old IDs
+PASS restart invalid duplicate CID legacy behavior
+PASS restart invalid zero CID legacy behavior
+PASS restart invalid missing player legacy fallback
+PASS restart trace empty trace
+PASS restart trace single restart
+PASS restart trace two restarts reverse allocation
+PASS restart trace restart then disconnect
+PASS restart trace restart disconnect restart
+PASS restart trace restart then create
+PASS restart trace restart create restart
+PASS restart trace restart tick restart
+PASS restart trace bound rename after restart
+PASS channel descriptor fresh
+PASS channel descriptor waiting Unicode
+PASS channel descriptor playing
+PASS channel descriptor MAX
+PASS channel rebind empty
+PASS channel rebind fresh retained
+PASS channel rebind waiting retained
+PASS channel rebind playing retains handle
+PASS channel rebind opposite roster orders
+PASS channel rebind equal slots distinct generations
+PASS channel rebind Unicode raw name
+PASS channel rebind MAX IDs and handle
+PASS channel rebind missing keeps PID
+PASS channel rebind duplicate takes first
+PASS channel rebind retains original phase and name
+PASS clock waiting zero
+PASS clock waiting backwards
+PASS clock waiting wrap
+PASS clock playing zero
+PASS clock playing backwards
+PASS clock playing wrap
+PASS clock ended zero
+PASS clock ended backwards
+PASS clock ended wrap
+PASS clock arbitrary phase zero
+PASS clock arbitrary phase backwards
+PASS clock arbitrary phase wrap
+PASS clock trace time only
+PASS clock trace last time wins
+PASS clock trace time then tick
+PASS clock trace time then restart
+PASS clock trace restart then time
+PASS clock trace time disconnect time
+PASS clock trace restart time tick wrap
+PASS clock trace time create time
+PASS live tick catalogue 0
+PASS live tick catalogue 1
+PASS live tick catalogue 2
+PASS live tick catalogue 3
+PASS live tick catalogue 4
+PASS live tick catalogue 5
+PASS live tick catalogue 6
+PASS live tick catalogue 7
+PASS live tick catalogue 8
+PASS live tick catalogue 9
+PASS live tick catalogue 10
+PASS live tick catalogue 4294967295
+PASS live tick below rage threshold
+PASS live tick exact rage threshold
+PASS live tick above rage threshold
+PASS live tick nonboss low health
+PASS live tick zero maximum
+PASS live tick wrapped health product
+PASS live tick wrapped maximum product
+PASS live tick MAX kind fallback
+PASS live tick normal damage
+PASS live tick rare damage
+PASS live tick enraged rare boss
+PASS live tick MAX rarity wraps
+PASS live tick corpse damage data
+PASS live tick MAX damage metadata
+PASS live tick empty damage list
+PASS live tick post tick regeneration
+PASS live tick post tick respawn
+PASS live tick mixed damage list order
+PASS live tick output fresh seed zero
+PASS live tick output fresh seed MAX
+PASS live tick output empty rosters
+PASS live tick output waiting phase
+PASS live tick output ended phase
+PASS live tick output single attack
+PASS live tick output ordered lethal attacks
+PASS live tick output movement before targeting
+PASS live tick output player respawn
+PASS live tick output monster cooldown
+PASS live tick output monster respawn
+PASS live tick output permanent corpse
+PASS live tick output boss regeneration threshold
+PASS live tick output four zones
+PASS live tick output tick wrap
+PASS live tick output arbitrary inactive phase
+PASS live tick output Unicode styled roster
+PASS live tick output actual arbitrary maps
+PASS live tick output missing old target
+PASS live tick successive full outputs
+PASS live command shop missing
+PASS live command shop inside
+PASS live command shop left boundary
+PASS live command shop right boundary
+PASS live command shop outside
+PASS live command shop wrong zone
+PASS live command shop MAX coordinate
+PASS live command shop dead profile
+PASS live command funded buy
+PASS live command poor buy
+PASS live command distant buy
+PASS live command wrong zone buy
+PASS live command dead buy
+PASS live command MAX item clamp
+PASS live command equip owned
+PASS live command equip missing
+PASS live command equip MAX
+PASS live command unequip weapon
+PASS live command unequip charm
+PASS live command unequip MAX slot
+PASS live command drink stocked
+PASS live command drink empty
+PASS live command drink dead
+PASS live command allocate point
+PASS live command allocate missing point
+PASS live command allocate MAX
+PASS live command direct level operation
+PASS live command missing player
+PASS live command move zero
+PASS live command move three
+PASS live command move masks four
+PASS live command move masks MAX
+PASS live command halt
+PASS live command elder starts
+PASS live command elder repeat
+PASS live command elder far
+PASS live command unknown NPC
+PASS live command shop talk
+PASS live command portal meadow
+PASS live command portal cavern
+PASS live command portal sealed
+PASS live command portal partial sigils
+PASS live command portal actual full sigils
+PASS live command portal MAX sigils
+PASS live command portal final zone
+PASS live command return portal
+PASS live command talk missing player
+PASS live command portal missing player
+PASS live command sequence buy then drink
+PASS live command sequence elder twice
+PASS live command sequence equip then unequip
+PASS live command sequence move then halt
+PASS live combat attack ready
+PASS live combat attack dead
+PASS live combat attack cooling
+PASS live combat attack MAX cooldown
+PASS live combat attack inactive
+PASS live combat attack ended
+PASS live combat attack unknown phase
+PASS live combat attack missing
+PASS live combat attack empty roster
+PASS live combat attack empty monsters
+PASS live combat attack multiplayer
+PASS live combat attack duplicate player lookup
+PASS live combat attack wrong zone
+PASS live combat attack out of range
+PASS live combat attack dead target
+PASS live combat attack MAX coordinate
+PASS live combat attack diagonal
+PASS live combat attack lethal ordinary
+PASS live combat attack lethal rare
+PASS live combat attack first warden
+PASS live combat attack final boss
+PASS live combat attack two kills
+PASS live combat attack boss then warden
+PASS live combat attack dead before live
+PASS live combat attack reversed targets
+PASS live combat spin ready
+PASS live combat spin dead
+PASS live combat spin cooling
+PASS live combat spin MAX cooldown
+PASS live combat spin inactive
+PASS live combat spin ended
+PASS live combat spin unknown phase
+PASS live combat spin missing
+PASS live combat spin empty roster
+PASS live combat spin empty monsters
+PASS live combat spin multiplayer
+PASS live combat spin duplicate player lookup
+PASS live combat spin wrong zone
+PASS live combat spin out of range
+PASS live combat spin dead target
+PASS live combat spin MAX coordinate
+PASS live combat spin diagonal
+PASS live combat spin lethal ordinary
+PASS live combat spin lethal rare
+PASS live combat spin first warden
+PASS live combat spin final boss
+PASS live combat spin two kills
+PASS live combat spin boss then warden
+PASS live combat spin dead before live
+PASS live combat spin reversed targets
+PASS live combat sequence attack then attack
+PASS live combat sequence spin then spin
+PASS live combat sequence attack then spin
+PASS live combat sequence spin then attack
+PASS live combat multiplayer competing attack
+PASS live combat multiplayer competing spin
+PASS live combat rejects hostile plan dead
+PASS live combat rejects hostile plan cooling
+PASS live combat rejects hostile plan missing
+PASS live combat rejects hostile plan ended
+PASS target distance origin
+PASS target distance same MAX
+PASS target distance east
+PASS target distance west
+PASS target distance north
+PASS target distance south
+PASS target distance diagonal
+PASS target distance two cells
+PASS target distance asymmetric axes
+PASS target distance reverse axes
+PASS target distance MAX delta
+PASS target distance reverse MAX delta
+PASS target distance MAX adjacent
+PASS target distance MAX diagonal
+PASS target selection empty
+PASS target selection same cell
+PASS target selection east
+PASS target selection west
+PASS target selection north
+PASS target selection south
+PASS target selection diagonal
+PASS target selection outside east
+PASS target selection outside west
+PASS target selection outside north
+PASS target selection outside south
+PASS target selection wrong zone
+PASS target selection dead
+PASS target selection unknown dead word
+PASS target selection MAX coordinate
+PASS target selection source order
+PASS target selection mixed rejection
+PASS target selection all rejected
+PASS target selection duplicate records
+PASS target selection duplicate IDs retain full records
+PASS target selection zero ID present
+PASS target selection zero ID absent
+PASS target selection zero ID then real target
+PASS target selection MAX ID
+PASS target selection zero boundary
+PASS target selection MAX boundary
+PASS target selection arbitrary same zone
+PASS target attack miss empty
+PASS target attack miss distant ordinary
+PASS target attack miss distant zero ID
+PASS target attack miss wrong zone zero ID
+PASS target attack miss dead zero ID
+PASS target attack miss mixed rejected zero ID
+PASS target ID zero miss exposes prior unintended damage
+PASS target live attack zero selected
+PASS target live attack zero distant then eligible
+PASS target live attack multiple eligible
+PASS target live attack mixed
+PASS target live spin zero selected
+PASS target live spin zero distant then eligible
+PASS target live spin multiple eligible
+PASS target live spin mixed
+PASS spin plan exact empty
+PASS spin plan exact one
+PASS spin plan exact ordered
+PASS spin plan exact different payloads
+PASS spin plan exact mixed rejection
+PASS spin plan exact all rejected
+PASS spin plan exact duplicate IDs
+PASS spin plan exact zero selected
+PASS spin plan exact MAX selected
+PASS spin plan exact diagonal boundary
+PASS spin plan exact zero distant
+PASS spin plan exact retained unusual fields
+PASS spin plan actual catalog kind 0
+PASS spin plan actual catalog kind 1
+PASS spin plan actual catalog kind 2
+PASS spin plan actual catalog kind 3
+PASS spin plan actual catalog kind 4
+PASS spin plan actual catalog kind 5
+PASS spin plan actual catalog kind 6
+PASS spin plan actual catalog kind 7
+PASS spin plan actual catalog kind 8
+PASS spin plan actual catalog kind 9
+PASS spin plan actual hero fresh
+PASS spin plan actual hero weapon
+PASS spin plan actual hero charm
+PASS spin plan actual hero strong
+PASS spin plan actual metadata zero
+PASS spin plan actual metadata MAX tick
+PASS spin plan actual metadata elapsed wrap
+PASS spin plan actual metadata full words
+PASS spin plan actual roster empty
+PASS spin plan actual roster mixed rejection
+PASS spin plan actual roster duplicate ID first lookup
+PASS spin plan actual roster zero ID
+PASS spin plan actual roster reverse order
+PASS spin plan actual roster unknown monster kind
+PASS spin plan live two lethal
+PASS spin plan live boss then warden
+PASS spin plan live warden then boss
+PASS spin plan live all bosses
+PASS spin plan live mixed survivors
+PASS spin plan live rare lethal
+PASS spin plan live zero then boss
+PASS spin plan live no eligible
+PASS spin plan sequence spin twice
+PASS spin plan sequence spin then attack
+PASS spin plan sequence attack then spin
+PASS spin plan sequence competing players
+PASS live spin forwards complete snapshots
+PASS live spin selects second player
+PASS live spin selects first duplicate PID
+PASS live spin preserves attack cooldown
+PASS live spin empty targets animate
+PASS live spin zero actor ID
+PASS live spin MAX actor ID
+PASS live spin forwards boundary metadata
+PASS live spin missing actor
+PASS live spin empty players
+PASS live spin dead actor
+PASS live spin cooling actor
+PASS live spin ended phase
+PASS live spin zero phase
+PASS live spin previous planner snapshots
+PASS live spin previous planner second actor
+PASS live spin previous planner missing actor
+PASS live spin previous planner empty targets
+PASS live spin previous planner duplicate IDs
+PASS live spin previous planner boundaries
+PASS live attack forwards complete snapshots
+PASS live attack selects later player
+PASS live attack selects first duplicate PID
+PASS live attack preserves MAX spin cooldown
+PASS live attack forwards critical word
+PASS live attack zero actor ID
+PASS live attack MAX actor ID
+PASS live attack forwards boundary metadata
+PASS live attack missing actor
+PASS live attack empty players
+PASS live attack dead actor
+PASS live attack cooling actor
+PASS live attack ended phase
+PASS live attack distant MID zero is a miss
+PASS live attack empty targets are quiet
+PASS live attack selects eligible MID zero
+PASS live attack previous planner snapshots
+PASS live attack previous planner different critical roll
+PASS live attack previous planner empty targets
+PASS live attack previous planner rejected
+PASS live attack previous planner duplicate monster IDs
+PASS live attack previous planner distant MID zero
+PASS live attack previous planner boundary metadata
+PASS live attack previous planner command PID

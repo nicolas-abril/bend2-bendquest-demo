@@ -1,0 +1,30 @@
+{
+  "stale_birth_world": {
+    "exit": 1,
+    "rejected": true
+  },
+  "stale_birth_record": {
+    "exit": 1,
+    "rejected": true
+  },
+  "stale_wait_record": {
+    "exit": 1,
+    "rejected": true
+  },
+  "skipped_command_world": {
+    "exit": 1,
+    "rejected": true
+  },
+  "false_birth_marker": {
+    "exit": 1,
+    "rejected": true
+  },
+  "stale_lookup_record": {
+    "exit": 1,
+    "rejected": true
+  },
+  "assumed_boundary_validity": {
+    "exit": 1,
+    "rejected": true
+  }
+}

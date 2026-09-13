@@ -1,0 +1,14 @@
+Error:
+- expected : {roster.Roster.found(roster.Roster.take(simulation.Simulation.monsters(terrain.Terrain.simulation(Boundary.world(point))), roster.Roster.id(original))) == Some{original} : Maybe<&2, monsters.Monsters.State>}
+- observed : {roster.Roster.found(roster.Roster.take(simulation.Simulation.monsters(terrain.Terrain.simulation(Boundary.world(point))), roster.Roster.id(original))) == Some{Boundary.monster(point)} : Maybe<&2, monsters.Monsters.State>}
+Context:
+- original : monsters.Monsters.State
+- point    : Boundary.State
+- inside   : combat_targets.Targets.In<Boundary.monster(point), simulation.Simulation.monsters(terrain.Terrain.simulation(Boundary.world(point)))>
+- unique   : identity.Identity.Unique(zones.Zones.keys(simulation.Simulation.monsters(terrain.Terrain.simulation(Boundary.world(point)))))
+- dead     : {vitals.Vitals.dead(monsters.Monsters.vitals(Boundary.monster(point))) == combat_targets.Targets.pick(Boundary.born(point), U32{WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WNil{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}, U32{WCon{True{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WCon{False{}, WNil{}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}) : U32}
+- same_id  : {roster.Roster.id(Boundary.monster(point)) == roster.Roster.id(original) : U32}
+Location: Boundary.lookup
+153 |     case Boundary.OK{inside,unique,dead,same_id}:
+154>|       %same_id : {R.Roster.found(R.Roster.take(S.Simulation.monsters(T.Terrain.simulation(Boundary.world(point))),_)) == Some{Boundary.monster(point)} : Maybe<&2,M.Monsters.State>}
+155 |       Member.Targets.lookup_member(Boundary.monster(point),S.Simulation.monsters(T.Terrain.simulation(Boundary.world(point))),inside,unique)
