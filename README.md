@@ -1,6 +1,11 @@
 # Bendquest
 
-A cooperative RPG in `bend3-demos/app_bendquest`, updated to the sibling `bend2-core`
+Standalone repository: [nicolas-abril/bend2-bendquest-demo](https://github.com/nicolas-abril/bend2-bendquest-demo).
+Extracted from `bend3-demos/app_bendquest` with its Git history.
+
+Keep this checkout beside `bend2-core` for the default build paths.
+
+A cooperative RPG in `bend2-bendquest-demo`, updated to the sibling `bend2-core`
 compiler. Three zones, bosses, equipment, quests, chat, a shop, character
 customization, and a cooperative final fight. HOST opens a server dashboard;
 PLAY joins a server. Run another instance to play on your own host.
@@ -10,7 +15,7 @@ PLAY joins a server. Run another instance to play on your own host.
 On macOS, with Bun, Clang, and Homebrew raylib installed:
 
 ```sh
-cd app_bendquest
+cd bend2-bendquest-demo
 ./build.sh
 ./run.sh                  # graphical menu: HOST or PLAY
 ./run.sh server 4977      # headless server
@@ -52,7 +57,7 @@ check.
 
 ## Port notes
 
-All gameplay and drawing code is Bend, built by `../../bend2-core/bend2/main.ts`. The
+All gameplay and drawing code is Bend, built by `../bend2-core/bend2/main.ts`. The
 original module boundaries are retained. `support.bend` contains the small
 part of the old prelude the game needs; `compat.bend` and `effs/` adapt its
 character lists, channels, sockets, and raylib commands to the current runtime.

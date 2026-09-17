@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-core=${BEND2_CORE:-../../bend2-core}
+core=${BEND2_CORE:-../bend2-core}
 spin_tmp=$(mktemp -d)
 trap 'rm -rf "$spin_tmp"' EXIT HUP INT TERM
 for source in spin_plans_check.bend live_combat_check.bend; do

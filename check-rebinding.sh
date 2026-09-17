@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-core=${BEND2_CORE:-../../bend2-core}
+core=${BEND2_CORE:-../bend2-core}
 rebinding_tmp=$(mktemp -d)
 trap 'rm -rf "$rebinding_tmp"' EXIT HUP INT TERM
 for source in rebinding_check.bend rebinding_server_check.bend; do

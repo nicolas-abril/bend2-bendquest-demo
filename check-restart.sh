@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-core=${BEND2_CORE:-../../bend2-core}
+core=${BEND2_CORE:-../bend2-core}
 restart_tmp=$(mktemp -d)
 trap 'rm -rf "$restart_tmp"' EXIT HUP INT TERM
 for source in restart_check.bend restart_server_check.bend; do

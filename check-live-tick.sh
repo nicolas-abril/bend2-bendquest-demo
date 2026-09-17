@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-core=${BEND2_CORE:-../../bend2-core}
+core=${BEND2_CORE:-../bend2-core}
 tick_tmp=$(mktemp -d)
 trap 'rm -rf "$tick_tmp"' EXIT HUP INT TERM
 for source in live_tick_check.bend; do

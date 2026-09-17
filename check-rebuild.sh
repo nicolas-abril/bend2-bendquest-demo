@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-core=${BEND2_CORE:-../../bend2-core}
+core=${BEND2_CORE:-../bend2-core}
 rebuild_tmp=$(mktemp -d)
 trap 'rm -rf "$rebuild_tmp"' EXIT HUP INT TERM
 bun "$core/bend2/main.ts" rebuild_check.bend -o "$rebuild_tmp/check.c"

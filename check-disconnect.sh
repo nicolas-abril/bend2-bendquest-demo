@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-core=${BEND2_CORE:-../../bend2-core}
+core=${BEND2_CORE:-../bend2-core}
 disconnect_tmp=$(mktemp -d)
 trap 'rm -rf "$disconnect_tmp"' EXIT HUP INT TERM
 for source in disconnect_check.bend disconnect_server_check.bend; do
