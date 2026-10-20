@@ -16,7 +16,7 @@ for source in disconnect_check.bend disconnect_server_check.bend; do
   esac
   python3 - "$disconnect_tmp/check" > "$disconnect_tmp/actual" <<'PYRUN'
 import subprocess, sys
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$disconnect_tmp/expected"
   diff -u "$disconnect_tmp/expected" "$disconnect_tmp/actual"

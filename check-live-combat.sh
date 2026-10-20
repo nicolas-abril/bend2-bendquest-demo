@@ -13,7 +13,7 @@ for source in live_combat_check.bend; do
   python3 - "$combat_tmp/check" > "$combat_tmp/actual" <<'PYRUN'
 import subprocess, sys
 from pathlib import Path
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$combat_tmp/expected"
   diff -u "$combat_tmp/expected" "$combat_tmp/actual"

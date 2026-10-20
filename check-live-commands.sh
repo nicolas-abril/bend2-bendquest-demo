@@ -13,7 +13,7 @@ for source in live_commands_check.bend; do
   python3 - "$command_tmp/check" > "$command_tmp/actual" <<'PYRUN'
 import subprocess, sys
 from pathlib import Path
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$command_tmp/expected"
   diff -u "$command_tmp/expected" "$command_tmp/actual"

@@ -13,7 +13,7 @@ for source in connection_check.bend restart_effects_check.bend; do
   python3 - "$channel_tmp/check" > "$channel_tmp/actual" <<'PYRUN'
 import subprocess, sys
 from pathlib import Path
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$channel_tmp/expected"
   diff -u "$channel_tmp/expected" "$channel_tmp/actual"

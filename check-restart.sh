@@ -12,7 +12,7 @@ for source in restart_check.bend restart_server_check.bend; do
     -framework CoreAudio -framework AudioToolbox
   python3 - "$restart_tmp/check" > "$restart_tmp/actual" <<'PYRUN'
 import subprocess, sys
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$restart_tmp/expected"
   diff -u "$restart_tmp/expected" "$restart_tmp/actual"

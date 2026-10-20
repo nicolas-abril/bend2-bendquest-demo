@@ -14,7 +14,7 @@ for source in creation_check.bend creation_server_check.bend; do
         -framework CoreAudio -framework AudioToolbox ;;
     *) clang -std=c11 -w -O0 -fno-slp-vectorize "$creation_tmp/check.c" -o "$creation_tmp/check" -lpthread -lm ;;
   esac
-  "$creation_tmp/check" --threads 2 --gpu off > "$creation_tmp/actual"
+  "$creation_tmp/check" +RTS --threads 2 --gpu off > "$creation_tmp/actual"
   sed -n 's/^#| //p' "$source" > "$creation_tmp/expected"
   diff -u "$creation_tmp/expected" "$creation_tmp/actual"
   cat "$creation_tmp/actual"

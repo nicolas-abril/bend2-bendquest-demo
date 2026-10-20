@@ -13,7 +13,7 @@ for source in live_tick_check.bend; do
   python3 - "$tick_tmp/check" > "$tick_tmp/actual" <<'PYRUN'
 import subprocess, sys
 from pathlib import Path
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$tick_tmp/expected"
   diff -u "$tick_tmp/expected" "$tick_tmp/actual"

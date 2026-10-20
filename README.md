@@ -26,7 +26,7 @@ The build and checks use the sibling `bend2-core` checkout; set `BEND2_CORE`
 to use another location. `run.sh` supplies the game directory for
 the font, database, and screenshots. A server listens on TCP port 4977 by
 default. Players enter the host's address and port in PLAY. Native runtime
-options can follow the game arguments, for example `--threads 4 --gpu off`.
+options go between `+RTS` and `-RTS`, for example `+RTS --threads 4 --gpu off`.
 `./build.sh release` enables additional C optimization.
 
 Controls: WASD/arrows move, SPACE attacks, E spins, Q drinks a potion,

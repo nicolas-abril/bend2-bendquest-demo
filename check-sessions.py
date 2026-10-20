@@ -38,7 +38,7 @@ class Client:
   self.send('SAY |'+marker);line=self.wait(lambda x:x.startswith('EV ') and marker in x)
   assert line=='EV |'+name+': '+marker,line
  def close(self):self.sock.close()
-p=subprocess.Popen([str(args.binary.resolve()),'--threads','2','--gpu','off'],cwd=work,env=env,stdout=open(work/'server.log','w'),stderr=subprocess.STDOUT)
+p=subprocess.Popen([str(args.binary.resolve()),'+RTS','--threads','2','--gpu','off'],cwd=work,env=env,stdout=open(work/'server.log','w'),stderr=subprocess.STDOUT)
 try:
  end=time.monotonic()+10
  while True:

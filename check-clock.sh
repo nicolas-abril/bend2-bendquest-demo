@@ -13,7 +13,7 @@ for source in clock_check.bend; do
   python3 - "$clock_tmp/check" > "$clock_tmp/actual" <<'PYRUN'
 import subprocess, sys
 from pathlib import Path
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60, cwd=Path(sys.argv[1]).parent)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$clock_tmp/expected"
   diff -u "$clock_tmp/expected" "$clock_tmp/actual"

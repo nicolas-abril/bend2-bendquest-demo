@@ -11,7 +11,7 @@ clang -std=c11 -w -O0 -fno-slp-vectorize "$rebuild_tmp/check.c" -o "$rebuild_tmp
   -framework CoreAudio -framework AudioToolbox
 python3 - "$rebuild_tmp/check" > "$rebuild_tmp/actual" <<'PYRUN'
 import subprocess, sys
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
 PYRUN
 sed -n 's/^#| //p' rebuild_check.bend > "$rebuild_tmp/expected"
 diff -u "$rebuild_tmp/expected" "$rebuild_tmp/actual"

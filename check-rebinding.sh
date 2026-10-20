@@ -12,7 +12,7 @@ for source in rebinding_check.bend rebinding_server_check.bend; do
     -framework CoreAudio -framework AudioToolbox
   python3 - "$rebinding_tmp/check" > "$rebinding_tmp/actual" <<'PYRUN'
 import subprocess, sys
-subprocess.run([sys.argv[1], '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
+subprocess.run([sys.argv[1], '+RTS', '--threads', '2', '--gpu', 'off'], check=True, timeout=60)
 PYRUN
   sed -n 's/^#| //p' "$source" > "$rebinding_tmp/expected"
   diff -u "$rebinding_tmp/expected" "$rebinding_tmp/actual"
