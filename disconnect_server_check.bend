@@ -16,15 +16,16 @@ import ./server.bend as Server
 import ./compat.bend as C
 
 @unsafe
-def marked_connection(+state: S.Sessions.State,+out: Chan<C.Bq.String>) -> IO(Server.Bq.Conn):
+def marked_connection(+state: S.Sessions.State,+out: Chan(C.Bq.String)) -> IO(Server.Bq.Conn):
   do IO<Server.Bq.Conn>:
-    sent : Bool <- Chan.send(C.Bq.String,out,P.Players.text_name(S.Sessions.name(state)))
+    sent_r : Result<&1,&1,C.Bq.String,Unit> <- Chan.send(C.Bq.String,out,P.Players.text_name(S.Sessions.name(state)))
+    sent : Bool = C.Bq.Chan.accepted(C.Bq.String,sent_r)
     IO.pure(Server.Bq.Conn,Server.Bq.connection_from_descriptor(state,out))
 
 @unsafe
 def make_connection(state: S.Sessions.State) -> IO(Server.Bq.Conn):
   do IO<Server.Bq.Conn>:
-    out : Chan<C.Bq.String> <- Chan.new(C.Bq.String,128)
+    out : Chan(C.Bq.String) <- Chan.new(C.Bq.String,128)
     marked_connection(state,out)
 
 @unsafe
@@ -50,7 +51,8 @@ def retained_channel(connection: Server.Bq.Conn) -> IO(Bool):
       +out = out
       do IO<Bool>:
         message : Maybe<&1,C.Bq.String> <- Chan.recv(C.Bq.String,out)
-        open : Bool <- Chan.send(C.Bq.String,out,Nil{})
+        open_r : Result<&1,&1,C.Bq.String,Unit> <- Chan.send(C.Bq.String,out,Nil{})
+        open : Bool = C.Bq.Chan.accepted(C.Bq.String,open_r)
         Unit <- Chan.close(C.Bq.String,out)
         IO.pure(Bool,Bool.and(open,marker_matches(message,name)))
 
@@ -72,7 +74,8 @@ def departed_channel(found: Result<&1,&1,Unit,Server.Bq.Conn>) -> IO(Bool):
       match connection:
         case Net.Connection.Record{cid,phase,pid,out,name}:
           do IO<Bool>:
-            accepted : Bool <- Chan.send(C.Bq.String,out,Nil{})
+            accepted_r : Result<&1,&1,C.Bq.String,Unit> <- Chan.send(C.Bq.String,out,Nil{})
+            accepted : Bool = C.Bq.Chan.accepted(C.Bq.String,accepted_r)
             IO.pure(Bool,Bool.not(accepted))
 
 @unsafe
@@ -92,7 +95,7 @@ def adapter_result(label: String,result: T.Terrain.World & List<&1,Server.Bq.Con
         Test.verdict(label,Bool.and(same,Bool.and(closed,retained)))
 
 @unsafe
-def adapter_run(label: String,+before: Sim.Simulation.State,+states: List<&2,S.Sessions.State>,+cid: U32,+connections: List<&1,Server.Bq.Conn>,+log: Chan<C.Bq.String>) -> IO(Unit):
+def adapter_run(label: String,+before: Sim.Simulation.State,+states: List<&2,S.Sessions.State>,+cid: U32,+connections: List<&1,Server.Bq.Conn>,+log: Chan(C.Bq.String)) -> IO(Unit):
   do IO<Unit>:
     result : T.Terrain.World & List<&1,Server.Bq.Conn> <- Server.Bq.on_gone(T.Terrain.world(L.Landscape.maps(0),before),connections,cid,log)
     closed : Bool <- departed_taken(Server.Bq.take_conn(cid,connections))
@@ -100,7 +103,7 @@ def adapter_run(label: String,+before: Sim.Simulation.State,+states: List<&2,S.S
     adapter_result(label,result,D.Disconnect.run(before,states,cid),closed)
 
 @unsafe
-def adapter_connections(label: String,+before: Sim.Simulation.State,+states: List<&2,S.Sessions.State>,cid: U32,log: Chan<C.Bq.String>) -> IO(Unit):
+def adapter_connections(label: String,+before: Sim.Simulation.State,+states: List<&2,S.Sessions.State>,cid: U32,log: Chan(C.Bq.String)) -> IO(Unit):
   do IO<Unit>:
     actual : List<&1,Server.Bq.Conn> <- make_connections(states)
     adapter_run(label,before,states,cid,actual,log)
@@ -110,7 +113,7 @@ def adapter(label: String,before: K.Creation.Result,cid: U32) -> IO(Unit):
   match before:
     case K.Creation.Result{world,states}:
       do IO<Unit>:
-        log : Chan<C.Bq.String> <- Chan.new(C.Bq.String,128)
+        log : Chan(C.Bq.String) <- Chan.new(C.Bq.String,128)
         adapter_connections(label,world,states,cid,log)
 
 @unsafe

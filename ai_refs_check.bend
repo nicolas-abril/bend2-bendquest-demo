@@ -8,7 +8,7 @@ import ./planning.bend as Plan
 import ./landscape.bend as L
 import ./terrain.bend as T
 import ./population.bend as Pop
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./players_check.bend as Test
 import ./simulation_check.bend as ST
 import ./world.bend as W

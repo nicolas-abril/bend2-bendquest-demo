@@ -1,9 +1,9 @@
 # Complete player-state composition of server-authored kill payouts.
 import Base
-import ./game.bend as G
-import ./rewards.bend as R
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/rewards.bend as R
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 
 def Payout.xp(player: P.Players.State) -> U32:
   match player:

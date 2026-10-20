@@ -2,7 +2,7 @@
 import Base
 import ./monsters.bend as M
 import ./roster.bend as R
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./zones.bend as Z
 import ./identity.bend as I
 import ./combat_targets.bend as T

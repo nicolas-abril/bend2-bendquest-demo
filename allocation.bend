@@ -1,6 +1,6 @@
 # Nonzero U32 IDs, with bounded search and no collision on wraparound.
 import Base
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 def Allocation.Ids() -> Data: List<&2,U32>
 

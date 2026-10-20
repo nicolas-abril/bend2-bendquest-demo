@@ -1,11 +1,11 @@
 # Exact cooldown transitions through actual vitals and player upkeep.
 import Base
 import ./combat.bend as C
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./players.bend as P
-import ./health.bend as H
-import ./numeric.bend as N
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/health.bend as H
+import gralha-bendquest@0.1.0.0/numeric.bend as N
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 law Cooldown.live:
   for +kind: C.Combat.Kind

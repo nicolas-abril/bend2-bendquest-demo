@@ -6,7 +6,7 @@ channel_tmp=$(mktemp -d)
 trap 'rm -rf "$channel_tmp"' EXIT HUP INT TERM
 for source in connection_check.bend restart_effects_check.bend; do
   bun "$core/bend2/main.ts" "$source" -o "$channel_tmp/check.c"
-  clang -std=c11 -w -O0 -fno-slp-vectorize "$channel_tmp/check.c" -o "$channel_tmp/check" \
+  clang -std=c11 -w -O1 -fno-slp-vectorize "$channel_tmp/check.c" -o "$channel_tmp/check" \
     -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
     -framework Cocoa -framework IOKit -framework CoreVideo \
     -framework CoreAudio -framework AudioToolbox

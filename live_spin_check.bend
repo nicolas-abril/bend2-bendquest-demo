@@ -5,7 +5,7 @@ import ./live_spin.bend as LS
 import ./live_combat.bend as Fight
 import ./combat.bend as Combat
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./monsters.bend as M
 import ./roster.bend as R
 import ./simulation.bend as S

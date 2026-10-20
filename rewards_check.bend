@@ -1,6 +1,6 @@
 import Base
-import ./game.bend as G
-import ./rewards.bend as R
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/rewards.bend as R
 import ./world.bend as W
 import ./compat.bend as C
 

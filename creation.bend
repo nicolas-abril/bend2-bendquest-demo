@@ -8,7 +8,7 @@ import ./targeting.bend as T
 import ./allocation.bend as A
 import ./admission.bend as J
 import ./identity.bend as Id
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./landscape.bend as L
 import ./simulation.bend as Sim
 import ./worldstate.bend as W

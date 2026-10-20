@@ -1,7 +1,7 @@
 # Checked live attack selection; calculators supply only critical/payload data.
 import Base
-import ./game.bend as G
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./targeting.bend as PlayerTarget
 import ./live_combat.bend as L
 import ./live_spin.bend as LS

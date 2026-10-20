@@ -18,7 +18,7 @@ def ChannelRestart.descriptor(result: ChannelRestart.Result) -> R.Restart.Result
   match result:
     case ChannelRestart.Result{world,connections}: R.Restart.Result{world,C.Connection.descriptors(connections)}
 
-def ChannelRestart.channels(result: ChannelRestart.Result) -> List<&2,Chan<List<&1,Char>>>:
+def ChannelRestart.channels(result: ChannelRestart.Result) -> List<&2,Chan(List<&1,Char>)>:
   match result:
     case ChannelRestart.Result{world,connections}: C.Connection.channels(connections)
 
@@ -90,7 +90,7 @@ law ChannelRestart.run_channels:
   for +world: U32
   for +seed: U32
   for +now: U32
-  {ChannelRestart.channels(ChannelRestart.run(before,connections,world,seed,now)) == C.Connection.channels(connections) : List<&2,Chan<List<&1,Char>>>}
+  {ChannelRestart.channels(ChannelRestart.run(before,connections,world,seed,now)) == C.Connection.channels(connections) : List<&2,Chan(List<&1,Char>)>}
 
 def ChannelRestart.run_channels(before,connections,world,seed,now): C.Connection.rebind_channels(connections,S.Simulation.players(T.Terrain.simulation(Rebuild.Rebuild.world(S.Simulation.players(before),Pop.Population.fresh(world,seed,now)))))
 
@@ -142,7 +142,7 @@ def ChannelRestart.restart_ok(old_seed,before,connections,valid): ChannelRestart
 law ChannelRestart.restart_channels:
   for +before: S.Simulation.State
   for connections: List<&1,C.Connection.Record>
-  {ChannelRestart.channels(ChannelRestart.restart(before,connections)) == C.Connection.channels(connections) : List<&2,Chan<List<&1,Char>>>}
+  {ChannelRestart.channels(ChannelRestart.restart(before,connections)) == C.Connection.channels(connections) : List<&2,Chan(List<&1,Char>)>}
 
 def ChannelRestart.restart_channels(before,connections): ChannelRestart.run_channels(before,connections,U32.add(ChannelRestart.number(S.Simulation.meta(before)),1),ChannelRestart.next_seed(before),ChannelRestart.now(S.Simulation.meta(before)))
 

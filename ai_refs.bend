@@ -5,7 +5,7 @@ import ./membership.bend as Mem
 import ./targeting.bend as Sel
 import ./players.bend as P
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./roster.bend as R
 import ./ai.bend as A
 import ./pursuit.bend as Q

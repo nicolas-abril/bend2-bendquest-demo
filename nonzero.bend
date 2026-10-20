@@ -12,7 +12,7 @@ import ./locomotion.bend as Walk
 import ./inventory.bend as Inv
 import ./interactions.bend as Inter
 import ./combat.bend as C
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./payouts.bend as Pay
 import ./battle.bend as B
 import ./monsters.bend as M

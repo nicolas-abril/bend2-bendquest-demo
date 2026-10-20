@@ -6,7 +6,7 @@ rebinding_tmp=$(mktemp -d)
 trap 'rm -rf "$rebinding_tmp"' EXIT HUP INT TERM
 for source in rebinding_check.bend rebinding_server_check.bend; do
   bun "$core/bend2/main.ts" "$source" -o "$rebinding_tmp/check.c"
-  clang -std=c11 -w -O0 -fno-slp-vectorize "$rebinding_tmp/check.c" -o "$rebinding_tmp/check" \
+  clang -std=c11 -w -O1 -fno-slp-vectorize "$rebinding_tmp/check.c" -o "$rebinding_tmp/check" \
     -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
     -framework Cocoa -framework IOKit -framework CoreVideo \
     -framework CoreAudio -framework AudioToolbox

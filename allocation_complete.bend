@@ -3,14 +3,14 @@
 import Base
 import ./nat_cycle.bend as Cycle
 import ./word_successor.bend as W
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./allocation.bend as A
 import ./allocation_search.bend as Search
 import ./admission_search.bend as AS
 import ./admission.bend as J
 import ./simulation.bend as S
 import ./players.bend as P
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 law AllocationComplete.different_gate:
   for +equal: Bool

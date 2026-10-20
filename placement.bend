@@ -1,7 +1,7 @@
 # Seeded spawn selection used by initial monsters and later respawns.
 import Base
-import ./game.bend as G
-import ./numeric.bend as Num
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/numeric.bend as Num
 import ./remainders.bend as R
 import ./terrain.bend as T
 import ./navigation.bend as N

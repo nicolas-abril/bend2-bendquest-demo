@@ -5,7 +5,7 @@ import ./payouts.bend as Pay
 import ./targeting.bend as T
 import ./player_membership.bend as PM
 import ./bindings.bend as Bind
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./battle.bend as B
 import ./simulation.bend as S
 import ./roster.bend as R
@@ -15,9 +15,9 @@ import ./combat_targets.bend as Targets
 import ./spin_plans.bend as Spin
 import ./live_combat.bend as L
 import ./identity.bend as I
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./target_plans.bend as TP
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 type Actor.Aligned<-left: List<&2,P.Players.State>,-right: List<&2,P.Players.State>> is Data:
   Actor.Empty{ls: {left == Nil{} : List<&2,P.Players.State>},rs: {right == Nil{} : List<&2,P.Players.State>}}

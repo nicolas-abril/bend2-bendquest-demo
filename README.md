@@ -23,7 +23,8 @@ cd bend2-bendquest-demo
 
 The executable is `.build/bendquest`; `./bendquest` and `./run.sh` launch it.
 The build and checks use the sibling `bend2-core` checkout; set `BEND2_CORE`
-to use another location. `run.sh` supplies the game directory for
+to use another location. It builds and checks with Bend 2.0.37. `run.sh`
+supplies the game directory for
 the font, database, and screenshots. A server listens on TCP port 4977 by
 default. Players enter the host's address and port in PLAY. Native runtime
 options go between `+RTS` and `-RTS`, for example `+RTS --threads 4 --gpu off`.
@@ -59,12 +60,22 @@ check.
 
 All gameplay and drawing code is Bend, built by `../bend2-core/bend2/main.ts`. The
 original module boundaries are retained. `support.bend` contains the small
-part of the old prelude the game needs; `compat.bend` and `effs/` adapt its
-character lists, channels, sockets, and raylib commands to the current runtime.
+part of the old prelude the game needs. `compat.bend` adapts its character
+lists to Base: printing, the environment, randomness, the monotonic clock,
+channels, reading files and running shell commands go through Base's effects.
+`effs/compat.c` keeps what Base lacks: the wall clock, an atomic file replace
+for the database, and TCP sockets the reader and writer of one connection
+share (Base's `Socket` is affine). Raylib comes from the `gralha-raylib`
+BendHub package; `raylib.bend` adapts the game's text and byte types to it.
+Both are C only, so the programs that reach them build natively; the JavaScript lane runs
+the pure checks.
 No Bend3 compiler or runtime is needed. The C build disables warning analysis
 for the generated dispatch function, as the original build did.
 
-`game.bend` is the verified kernel used by the server. It contains all 15
+The verified kernel used by the server is the `gralha-bendquest` BendHub
+package (`game`, `numeric`, `health`, `growth`, `rewards` and `vitals`), built
+in [bend2-libs](https://github.com/nicolas-abril/bend2-libs) and imported by
+name. Its `game.bend` is the core. It contains all 15
 original theorems and their supporting lemmas, with no `@unsafe`, axioms, or
 unfinished proofs. `proofs.bend` presents the original statements against
 those exact functions: item conservation, exact purchases and potion

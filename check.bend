@@ -1,5 +1,5 @@
 import Base
-import ./game.bend as Game
+import gralha-bendquest@0.1.0.0/game.bend as Game
 import ./compat.bend as C
 import ./support.bend as Support
 

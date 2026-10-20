@@ -1,7 +1,7 @@
 # Authoritative ordered monster strikes, conditional rewards, and world metadata.
 # Simulation.OK is the established health/equipment/monster-zone invariant.
 import Base
-import ./numeric.bend as Num
+import gralha-bendquest@0.1.0.0/numeric.bend as Num
 import ./combat.bend as K
 import ./players.bend as P
 import ./monsters.bend as M

@@ -12,8 +12,8 @@ import ./simulation.bend as S
 import ./terrain.bend as T
 import ./population.bend as Pop
 import ./connections.bend as Conn
-import ./vitals.bend as V
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 # Independent reconstruction of the previous server loop, including the actual
 # legacy add_plr adapter and its list-grade/name conversion.

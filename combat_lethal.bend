@@ -1,7 +1,7 @@
 # Positive lethal-strike and actual attack reward liveness.
 import Base
-import ./game.bend as G
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./monsters.bend as M
 import ./roster.bend as R
 import ./combat_targets.bend as Targets
@@ -18,7 +18,7 @@ import ./live_combat.bend as L
 import ./live_attack.bend as Attack
 import ./live_spin.bend as Spin
 import ./target_plans.bend as TP
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 def Lethal.Enough(monster: M.Monsters.State,damage: U32) -> Data:
   {G.Bq.Nat.le(U32.to_nat(V.Vitals.hp(M.Monsters.vitals(monster))),U32.to_nat(damage)) == True{} : Bool}

@@ -1,6 +1,6 @@
 import Base
-import ./health.bend as H
-import ./growth.bend as Growth
+import gralha-bendquest@0.1.0.0/health.bend as H
+import gralha-bendquest@0.1.0.0/growth.bend as Growth
 
 def check_result(name: String, ok: Bool) -> IO(Unit):
   match ok:

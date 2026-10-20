@@ -5,8 +5,8 @@ import ./connections.bend as C
 import ./players.bend as P
 import ./playerids.bend as Ids
 import ./allocation.bend as A
-import ./numeric.bend as N
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/numeric.bend as N
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./simulation.bend as Sim
 
 type Selection.Take is Data:

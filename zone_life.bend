@@ -2,12 +2,12 @@
 import Base
 import ./monster_life.bend as Life
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./ai.bend as A
 import ./zones.bend as Z
 import ./roster.bend as R
 import ./combat_targets.bend as Targets
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./identity.bend as I
 import ./planning.bend as Plan
 import ./terrain.bend as T

@@ -1,7 +1,7 @@
 # Actual lethal attack certificates and complete no-tick command suffixes.
 import Base
-import ./game.bend as G
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./monsters.bend as M
 import ./roster.bend as R
 import ./combat_targets.bend as Targets
@@ -18,7 +18,7 @@ import ./live_combat.bend as L
 import ./live_attack.bend as Attack
 import ./live_spin.bend as Spin
 import ./target_plans.bend as TP
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 import ./combat_lethal.bend as Lethal
 import ./dead_rewards.bend as Dead

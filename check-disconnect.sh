@@ -8,11 +8,11 @@ for source in disconnect_check.bend disconnect_server_check.bend; do
   bun "$core/bend2/main.ts" "$source" -o "$disconnect_tmp/check.c"
   case "$source" in
     disconnect_server_check.bend)
-      clang -std=c11 -w -O0 -fno-slp-vectorize "$disconnect_tmp/check.c" -o "$disconnect_tmp/check" \
+      clang -std=c11 -w -O1 -fno-slp-vectorize "$disconnect_tmp/check.c" -o "$disconnect_tmp/check" \
         -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
         -framework Cocoa -framework IOKit -framework CoreVideo \
         -framework CoreAudio -framework AudioToolbox ;;
-    *) clang -std=c11 -w -O0 -fno-slp-vectorize "$disconnect_tmp/check.c" -o "$disconnect_tmp/check" -lpthread -lm ;;
+    *) clang -std=c11 -w -O1 -fno-slp-vectorize "$disconnect_tmp/check.c" -o "$disconnect_tmp/check" -lpthread -lm ;;
   esac
   python3 - "$disconnect_tmp/check" > "$disconnect_tmp/actual" <<'PYRUN'
 import subprocess, sys

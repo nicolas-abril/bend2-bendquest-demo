@@ -1,6 +1,6 @@
 # Exact player/cooldown histories across arbitrary live ticks and combat commands.
 import Base
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./combat_rejected.bend as R
 import ./combat.bend as C
 import ./live_combat.bend as L

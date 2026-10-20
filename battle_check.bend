@@ -2,7 +2,7 @@ import Base
 import ./battle.bend as B
 import ./combat.bend as K
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./monsters.bend as M
 import ./roster.bend as R
 import ./payouts.bend as Pay

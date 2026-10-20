@@ -2,8 +2,8 @@ import Base
 import ./terrain.bend as Terrain
 import ./inventory.bend as I
 import ./players.bend as P
-import ./vitals.bend as V
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./world.bend as W
 import ./compat.bend as C
 import ./players_check.bend as T

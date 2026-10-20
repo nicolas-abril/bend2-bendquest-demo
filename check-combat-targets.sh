@@ -6,7 +6,7 @@ target_tmp=$(mktemp -d)
 trap 'rm -rf "$target_tmp"' EXIT HUP INT TERM
 for source in combat_targets_check.bend live_combat_check.bend; do
   bun "$core/bend2/main.ts" "$source" -o "$target_tmp/check.c"
-  clang -std=c11 -w -O0 -fno-slp-vectorize "$target_tmp/check.c" -o "$target_tmp/check" \
+  clang -std=c11 -w -O1 -fno-slp-vectorize "$target_tmp/check.c" -o "$target_tmp/check" \
     -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
     -framework Cocoa -framework IOKit -framework CoreVideo \
     -framework CoreAudio -framework AudioToolbox

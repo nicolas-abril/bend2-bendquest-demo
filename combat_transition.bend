@@ -12,9 +12,9 @@ import ./combat_admitted.bend as Admit
 import ./live_combat.bend as L
 import ./simulation.bend as S
 import ./terrain.bend as Terrain
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./payouts.bend as Pay
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./cooldown_roster.bend as TC
 import ./cooldown_actor.bend as Tracked
 

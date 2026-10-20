@@ -1,8 +1,8 @@
 # Monster state used by the server, with checked damage/death transitions.
 import Base
-import ./game.bend as G
-import ./health.bend as H
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/health.bend as H
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 
 type Monsters.State is Data:
   Monsters.State{mid: U32, kind: U32, rare: U32, zone: U32, x: U32, y: U32, hp: U32, maximum: U32, target: U32, attack: U32, dead: U32, respawn: U32}

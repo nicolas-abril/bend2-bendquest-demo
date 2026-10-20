@@ -3,7 +3,7 @@ import Base
 import ./nat_cycle.bend as C
 import ./nat_capacity.bend as NC
 import ./word_successor.bend as W
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./allocation.bend as A
 import ./allocation_search.bend as Search
 import ./allocation_complete.bend as Complete
@@ -11,7 +11,7 @@ import ./admission.bend as J
 import ./admission_search.bend as AS
 import ./players.bend as P
 import ./simulation.bend as S
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 law IdCapacity.value_injective:
   for +a: U32

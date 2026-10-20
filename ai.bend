@@ -3,7 +3,7 @@
 import Base
 import ./monsters.bend as M
 import ./roster.bend as R
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 
 type AI.Plan is Data:
   AI.Rest{}

@@ -4,7 +4,7 @@ import ./bindings.bend as Bind
 import ./connections.bend as Conn
 import ./sessions.bend as Sess
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./simulation.bend as S
 import ./ai.bend as AI
 import ./planning.bend as Plan

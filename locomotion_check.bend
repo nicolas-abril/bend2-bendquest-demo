@@ -2,7 +2,7 @@ import Base
 import ./locomotion.bend as L
 import ./terrain.bend as Terrain
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./simulation.bend as S
 import ./ai.bend as A
 import ./world.bend as W

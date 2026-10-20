@@ -3,12 +3,12 @@ import Base
 import ./dead_rewards.bend as Dead
 import ./combat_lethal.bend as Lethal
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./roster.bend as R
 import ./combat_targets.bend as Targets
 import ./combat_frame.bend as Frame
 import ./identity.bend as I
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./battle.bend as B
 import ./payouts.bend as Pay
 import ./simulation.bend as S

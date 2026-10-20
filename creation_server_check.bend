@@ -18,15 +18,16 @@ import ./compat.bend as C
 import ./creation_check.bend as Fixture
 # Exercise actual on_create, including its profile/cosmetic gate and channels.
 @unsafe
-def marked_connection(+state: S.Sessions.State,+out: Chan<C.Bq.String>) -> IO(Server.Bq.Conn):
+def marked_connection(+state: S.Sessions.State,+out: Chan(C.Bq.String)) -> IO(Server.Bq.Conn):
   do IO<Server.Bq.Conn>:
-    sent : Bool <- Chan.send(C.Bq.String,out,P.Players.text_name(S.Sessions.name(state)))
+    sent_r : Result<&1,&1,C.Bq.String,Unit> <- Chan.send(C.Bq.String,out,P.Players.text_name(S.Sessions.name(state)))
+    sent : Bool = C.Bq.Chan.accepted(C.Bq.String,sent_r)
     IO.pure(Server.Bq.Conn,Server.Bq.connection_from_descriptor(state,out))
 
 @unsafe
 def make_connection(state: S.Sessions.State) -> IO(Server.Bq.Conn):
   do IO<Server.Bq.Conn>:
-    out : Chan<C.Bq.String> <- Chan.new(C.Bq.String,128)
+    out : Chan(C.Bq.String) <- Chan.new(C.Bq.String,128)
     marked_connection(state,out)
 
 @unsafe
@@ -77,7 +78,7 @@ def adapter_result(label: String,result: T.Terrain.World & List<&1,Server.Bq.Con
         Test.verdict(label,Bool.and(matches,channels))
 
 @unsafe
-def adapter_run(label: String,+before: Sim.Simulation.State,+states: List<&2,S.Sessions.State>,+cid: U32,numbers: List<&1,U32>,expected_style: P.Players.Style,permitted: Bool,+log: Chan<C.Bq.String>) -> IO(Unit):
+def adapter_run(label: String,+before: Sim.Simulation.State,+states: List<&2,S.Sessions.State>,+cid: U32,numbers: List<&1,U32>,expected_style: P.Players.Style,permitted: Bool,+log: Chan(C.Bq.String)) -> IO(Unit):
   do IO<Unit>:
     actual : List<&1,Server.Bq.Conn> <- connections(states)
     result : T.Terrain.World & List<&1,Server.Bq.Conn> <- Server.Bq.on_create(T.Terrain.world(L.Landscape.maps(0),before),actual,Server.Bq.Db.Db{7,Nil{},Nil{}},cid,numbers,log)
@@ -89,7 +90,7 @@ def adapter(label: String,before: K.Creation.Result,cid: U32,numbers: List<&1,U3
   match before:
     case K.Creation.Result{world,states}:
       do IO<Unit>:
-        log : Chan<C.Bq.String> <- Chan.new(C.Bq.String,128)
+        log : Chan(C.Bq.String) <- Chan.new(C.Bq.String,128)
         adapter_run(label,world,states,cid,numbers,expected_style,permitted,log)
 
 @unsafe

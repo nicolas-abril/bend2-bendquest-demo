@@ -1,7 +1,7 @@
 import Base
 import ./terrain.bend as Terrain
 import ./players.bend as P
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./world.bend as W
 import ./compat.bend as C
 import ./players_check.bend as T

@@ -4,7 +4,7 @@ import ./terrain.bend as T
 import ./simulation.bend as S
 import ./players.bend as P
 import ./monsters.bend as M
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./inventory.bend as I
 import ./interactions.bend as Inter
 import ./frame_bindings.bend as F

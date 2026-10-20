@@ -4,7 +4,7 @@ import ./terrain.bend as T
 import ./navigation.bend as N
 import ./players.bend as P
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./ai.bend as A
 import ./roster.bend as R
 

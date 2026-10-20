@@ -2,7 +2,7 @@
 import Base
 import ./players.bend as P
 import ./combat.bend as C
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./combat_admitted.bend as Admit
 import ./combat_repeat.bend as Repeat
 import ./live_combat.bend as L

@@ -9,7 +9,7 @@ import ./simulation.bend as S
 import ./terrain.bend as T
 import ./players.bend as P
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./roster.bend as R
 import ./combat_targets.bend as Member
 import ./identity.bend as I

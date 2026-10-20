@@ -3,7 +3,7 @@ import Base
 import ./monsters.bend as M
 import ./roster.bend as R
 import ./ai.bend as A
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 
 # An explicit finite-zone witness, with no assumption about arbitrary U32s.
 type Zones.Valid<-zone: U32> is Data:

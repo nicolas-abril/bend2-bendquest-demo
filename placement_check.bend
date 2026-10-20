@@ -5,7 +5,7 @@ import ./placement.bend as Place
 import ./terrain.bend as T
 import ./monsters.bend as M
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./roster.bend as R
 import ./habitat.bend as H
 import ./simulation.bend as S
@@ -13,7 +13,7 @@ import ./world.bend as W
 import ./compat.bend as C
 import ./ai.bend as A
 import ./players_check.bend as Test
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 def position_ok(+maps: T.Terrain.Maps,+monster: M.Monsters.State) -> Bool:
   +pos = H.Habitat.pos(monster)

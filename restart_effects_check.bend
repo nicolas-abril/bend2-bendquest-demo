@@ -19,11 +19,11 @@ import ./proto.bend as Proto
 import ./support.bend as Support
 
 law previous_restart:
-  (@+w_0: World.Bq.World -> (@+cs_1: List<&1, Live.Bq.Conn> -> (@+db_2: Live.Bq.Db -> (@+lg_3: Chan<C.Bq.String> -> IO(C.Bq.Pair.Pair(World.Bq.World, (__4 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__5 => Live.Bq.Db)))))))))
+  (@+w_0: World.Bq.World -> (@+cs_1: List<&1, Live.Bq.Conn> -> (@+db_2: Live.Bq.Db -> (@+lg_3: Chan(C.Bq.String) -> IO(C.Bq.Pair.Pair(World.Bq.World, (__4 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__5 => Live.Bq.Db)))))))))
 
 @unsafe
 def previous_restart():
-  \{Terrain.Terrain.World: \{S.Simulation.Meta: (phase_0 => (wno_1 => (seed_2 => (tick_3 => (t0_4 => (now_5 => (sigils_6 => (fame_t_7 => (nextpid_8 => (nextmid_9 => (plrs_10 => (mobs_11 => (maps_12 => (cs_13 => (db_14 => (lg_15 => (+nseed_16 = World.Bq.hash2(seed_2, now_5); (+w1_17 = World.Bq.fresh_world((wno_1 + 1 : U32), nseed_16, now_5); (+w2_18 = Live.Bq.readd_plrs(w1_17, plrs_10); (+cs2_19 = Live.Bq.rebind_conns(cs_13, Live.Bq.plrs_of_w(w2_18)); (+apply_448 = {(wno_0 => (w2_1 => (lg_2 => \{Live.Bq.Db.Db: (wno_3 => (profs_4 => (runs_5 => (cs2_6 => (+db2_7 = {Live.Bq.Db.Db{(wno_0 + 1 : U32), profs_4, runs_5} : Live.Bq.Db}; C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__8 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__9 => Live.Bq.Db)))), Live.Bq.db_save(db2_7), (__8 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__9 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__10 => Live.Bq.Db)))), Live.Bq.send_all(cs2_6, Proto.Bq.wire_enc(C.Bq.text("START"), [(wno_0 + 1 : U32)], Nil{})), (__9 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__10 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__11 => Live.Bq.Db)))), Live.Bq.send_all_lines(cs2_6, Con{World.Bq.zone_line(Live.Bq.maps_of_w(w2_1), 0), Live.Bq.plr_name_lines(Live.Bq.plrs_of_w(w2_1))}), (__10 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__11 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__12 => Live.Bq.Db)))), Live.Bq.send_all(cs2_6, Proto.Bq.wire_enc(C.Bq.text("EV"), Nil{}, Support.Bq.List.concat(Char, C.Bq.text("A NEW WORLD DAWNS (world "), Support.Bq.List.concat(Char, Support.Bq.U32.show((wno_0 + 1 : U32)), C.Bq.text(")"))))), (__11 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__12 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__13 => Live.Bq.Db)))), Live.Bq.chan_push(lg_2, Support.Bq.List.concat(Char, C.Bq.text("world "), Support.Bq.List.concat(Char, Support.Bq.U32.show((wno_0 + 1 : U32)), C.Bq.text(" started")))), (__12 => C.Bq.IO.pure(C.Bq.Pair.Pair(World.Bq.World, (__13 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__14 => Live.Bq.Db)))), Tuple{w2_1, Tuple{cs2_6, db2_7}})))))))))))))))); \{}}))) : (@+wno_0: U32 -> (@+w2_1: World.Bq.World -> (@+lg_2: Chan<C.Bq.String> -> (@+___3: Live.Bq.Db -> (@+__4: List<&1, Live.Bq.Conn> -> IO(Sigma<&1, &1, World.Bq.World, (__5 => Sigma<&1, &1, List<&1, Live.Bq.Conn>, (__6 => Live.Bq.Db)>)>))))))}; apply_448(wno_1, w2_18, lg_15, db_14, cs2_19)))))))))))))))))))))); \{}}; \{}}
+  \{Terrain.Terrain.World: \{S.Simulation.Meta: (phase_0 => (wno_1 => (seed_2 => (tick_3 => (t0_4 => (now_5 => (sigils_6 => (fame_t_7 => (nextpid_8 => (nextmid_9 => (plrs_10 => (mobs_11 => (maps_12 => (cs_13 => (db_14 => (lg_15 => (+nseed_16 = World.Bq.hash2(seed_2, now_5); (+w1_17 = World.Bq.fresh_world((wno_1 + 1 : U32), nseed_16, now_5); (+w2_18 = Live.Bq.readd_plrs(w1_17, plrs_10); (+cs2_19 = Live.Bq.rebind_conns(cs_13, Live.Bq.plrs_of_w(w2_18)); (+apply_448 = {(wno_0 => (w2_1 => (lg_2 => \{Live.Bq.Db.Db: (wno_3 => (profs_4 => (runs_5 => (cs2_6 => (+db2_7 = {Live.Bq.Db.Db{(wno_0 + 1 : U32), profs_4, runs_5} : Live.Bq.Db}; C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__8 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__9 => Live.Bq.Db)))), Live.Bq.db_save(db2_7), (__8 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__9 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__10 => Live.Bq.Db)))), Live.Bq.send_all(cs2_6, Proto.Bq.wire_enc(C.Bq.text("START"), [(wno_0 + 1 : U32)], Nil{})), (__9 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__10 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__11 => Live.Bq.Db)))), Live.Bq.send_all_lines(cs2_6, Con{World.Bq.zone_line(Live.Bq.maps_of_w(w2_1), 0), Live.Bq.plr_name_lines(Live.Bq.plrs_of_w(w2_1))}), (__10 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__11 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__12 => Live.Bq.Db)))), Live.Bq.send_all(cs2_6, Proto.Bq.wire_enc(C.Bq.text("EV"), Nil{}, Support.Bq.List.concat(Char, C.Bq.text("A NEW WORLD DAWNS (world "), Support.Bq.List.concat(Char, Support.Bq.U32.show((wno_0 + 1 : U32)), C.Bq.text(")"))))), (__11 => C.Bq.IO.bind(Unit, C.Bq.Pair.Pair(World.Bq.World, (__12 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__13 => Live.Bq.Db)))), Live.Bq.chan_push(lg_2, Support.Bq.List.concat(Char, C.Bq.text("world "), Support.Bq.List.concat(Char, Support.Bq.U32.show((wno_0 + 1 : U32)), C.Bq.text(" started")))), (__12 => C.Bq.IO.pure(C.Bq.Pair.Pair(World.Bq.World, (__13 => C.Bq.Pair.Pair(List<&1, Live.Bq.Conn>, (__14 => Live.Bq.Db)))), Tuple{w2_1, Tuple{cs2_6, db2_7}})))))))))))))))); \{}}))) : (@+wno_0: U32 -> (@+w2_1: World.Bq.World -> (@+lg_2: Chan(C.Bq.String) -> (@+___3: Live.Bq.Db -> (@+__4: List<&1, Live.Bq.Conn> -> IO(Sigma<&1, &1, World.Bq.World, (__5 => Sigma<&1, &1, List<&1, Live.Bq.Conn>, (__6 => Live.Bq.Db)>)>))))))}; apply_448(wno_1, w2_18, lg_15, db_14, cs2_19)))))))))))))))))))))); \{}}; \{}}
 
 
 type ChannelData is Data:
@@ -36,7 +36,7 @@ type Snapshot is Data:
   Snapshot{game: R.Restart.Result,database: List<&2,Char>,disk: Disk,outputs: List<&2,ChannelData>,log: List<&2,List<&2,Char>>}
 
 @unsafe
-def drain(fuel: Nat,+out: Chan<C.Bq.String>) -> IO(List<&2,List<&2,Char>>):
+def drain(fuel: Nat,+out: Chan(C.Bq.String)) -> IO(List<&2,List<&2,Char>>):
   match fuel:
     case Zero{}: IO.pure(List<&2,List<&2,Char>>,Nil{})
     case Succ{left}:
@@ -49,7 +49,8 @@ def channel_data(connection: Net.Connection.Record) -> IO(ChannelData):
       +out = out
       do IO<ChannelData>:
         lines : List<&2,List<&2,Char>> <- drain(64n,out)
-        accepted : Bool <- Chan.send(C.Bq.String,out,Nil{})
+        accepted_r : Result<&1,&1,C.Bq.String,Unit> <- Chan.send(C.Bq.String,out,Nil{})
+        accepted : Bool = C.Bq.Chan.accepted(C.Bq.String,accepted_r)
         Unit <- Chan.close(C.Bq.String,out)
         IO.pure(ChannelData,ChannelData{lines,accepted})
 
@@ -70,7 +71,7 @@ def disk_data(result: Result<&1,&1,U32 & C.Bq.String,C.Bq.String>) -> Disk:
     case Done{text}: Disk{P.Players.share_name(text),True{}}
 
 @unsafe
-def snapshot(result: World.Bq.World & (List<&1,Live.Bq.Conn> & Live.Bq.Db),+log: Chan<C.Bq.String>) -> IO(Snapshot):
+def snapshot(result: World.Bq.World & (List<&1,Live.Bq.Conn> & Live.Bq.Db),+log: Chan(C.Bq.String)) -> IO(Snapshot):
   match result:
     case Tuple{world,rest}:
       match rest:
@@ -84,13 +85,13 @@ def snapshot(result: World.Bq.World & (List<&1,Live.Bq.Conn> & Live.Bq.Db),+log:
             IO.pure(Snapshot,Snapshot{R.Restart.Result{world,Net.Connection.descriptors(connections)},P.Players.share_name(Live.Bq.db_enc(db)),disk_data(saved),outputs,logs})
 
 @unsafe
-def execute(previous: Bool,world: World.Bq.World,connections: List<&1,Live.Bq.Conn>,db: Live.Bq.Db,log: Chan<C.Bq.String>) -> IO(World.Bq.World & (List<&1,Live.Bq.Conn> & Live.Bq.Db)):
+def execute(previous: Bool,world: World.Bq.World,connections: List<&1,Live.Bq.Conn>,db: Live.Bq.Db,log: Chan(C.Bq.String)) -> IO(World.Bq.World & (List<&1,Live.Bq.Conn> & Live.Bq.Db)):
   match previous:
     case True{}: previous_restart(world,connections,db,log)
     case False{}: Live.Bq.restart_world(world,connections,db,log)
 
 @unsafe
-def capture_ready(previous: Bool,world: World.Bq.World,connections: List<&1,Live.Bq.Conn>,db: Live.Bq.Db,+log: Chan<C.Bq.String>) -> IO(Snapshot):
+def capture_ready(previous: Bool,world: World.Bq.World,connections: List<&1,Live.Bq.Conn>,db: Live.Bq.Db,+log: Chan(C.Bq.String)) -> IO(Snapshot):
   do IO<Snapshot>:
     result : World.Bq.World & (List<&1,Live.Bq.Conn> & Live.Bq.Db) <- execute(previous,world,connections,db,log)
     snapshot(result,log)
@@ -99,7 +100,7 @@ def capture_ready(previous: Bool,world: World.Bq.World,connections: List<&1,Live
 def capture(previous: Bool,world: World.Bq.World,states: List<&2,Sess.Sessions.State>,db: Live.Bq.Db) -> IO(Snapshot):
   do IO<Snapshot>:
     connections : List<&1,Live.Bq.Conn> <- Fixtures.make_connections(states)
-    log : Chan<C.Bq.String> <- Chan.new(C.Bq.String,128)
+    log : Chan(C.Bq.String) <- Chan.new(C.Bq.String,128)
     capture_ready(previous,world,connections,db,log)
 
 def same_lines(left: List<&2,List<&2,Char>>,right: List<&2,List<&2,Char>>) -> Bool:

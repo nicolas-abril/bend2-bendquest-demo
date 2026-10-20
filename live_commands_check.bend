@@ -7,7 +7,7 @@ import ./interactions.bend as Interact
 import ./terrain.bend as Terrain
 import ./simulation.bend as S
 import ./players.bend as P
-import ./game.bend as Game
+import gralha-bendquest@0.1.0.0/game.bend as Game
 import ./compat.bend as C
 import ./support.bend as Support
 import ./data.bend as Data

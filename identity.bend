@@ -1,6 +1,6 @@
 # Monster IDs are distinct independently of mutable monster fields and zones.
 import Base
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./monsters.bend as M
 import ./roster.bend as R
 import ./zones.bend as Z

@@ -5,7 +5,7 @@ import ./targeting.bend as T
 import ./playerids.bend as Id
 import ./admission.bend as J
 import ./allocation.bend as A
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./identity.bend as I
 
 def PlayerMembership.head(players: List<&2,P.Players.State>,fallback: P.Players.State) -> P.Players.State:

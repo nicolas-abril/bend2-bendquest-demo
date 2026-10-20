@@ -11,7 +11,7 @@ import ./payouts.bend as Pay
 import ./monsters.bend as M
 import ./players.bend as P
 import ./simulation.bend as S
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./compat.bend as C
 import ./live_combat_check.bend as Live
 import ./combat_targets_check.bend as Selection

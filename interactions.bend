@@ -1,8 +1,8 @@
 # Checked movement controls, NPC conversations, and portal commands.
 import Base
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./navigation.bend as N
 
 def Interaction.elder_x() -> U32: 6

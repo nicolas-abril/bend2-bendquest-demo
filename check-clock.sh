@@ -6,7 +6,7 @@ clock_tmp=$(mktemp -d)
 trap 'rm -rf "$clock_tmp"' EXIT HUP INT TERM
 for source in clock_check.bend; do
   bun "$core/bend2/main.ts" "$source" -o "$clock_tmp/check.c"
-  clang -std=c11 -w -O0 -fno-slp-vectorize "$clock_tmp/check.c" -o "$clock_tmp/check" \
+  clang -std=c11 -w -O1 -fno-slp-vectorize "$clock_tmp/check.c" -o "$clock_tmp/check" \
     -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
     -framework Cocoa -framework IOKit -framework CoreVideo \
     -framework CoreAudio -framework AudioToolbox

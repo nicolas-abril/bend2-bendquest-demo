@@ -8,8 +8,8 @@ import ./interactions.bend as Inter
 import ./combat.bend as C
 import ./payouts.bend as Pay
 import ./players.bend as P
-import ./vitals.bend as V
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./battle.bend as B
 import ./roster.bend as R
 import ./monsters.bend as M

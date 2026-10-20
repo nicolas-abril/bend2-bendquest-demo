@@ -7,7 +7,7 @@ import ./combat_targets.bend as Targets
 import ./identity.bend as I
 import ./combat.bend as C
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./combat_actor.bend as A
 import ./targeting.bend as T
 import ./simulation.bend as S

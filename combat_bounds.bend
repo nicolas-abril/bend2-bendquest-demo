@@ -13,12 +13,12 @@ import ./cooldown_tick.bend as CD
 import ./cooldown_actor.bend as Tracked
 import ./cooldown_roster.bend as TC
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./simulation.bend as S
 import ./terrain.bend as T
 import ./world_clock.bend as Clock
-import ./game.bend as G
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 # Count only actual active upkeep steps that take the live branch.
 def Bounds.count_gate(running: Bool,dead: Bool) -> Nat:

@@ -2,7 +2,7 @@
 set -eu
 cd "$(dirname "$0")"
 report=$(bun "${BEND2_CORE:-../bend2-core}/bend2/main.ts" proofs.bend)
-if [ "$report" != 'All terms check.' ]; then
+if [ "$(printf '%s\n' "$report" | head -n 1)" != 'ALL PROOFS CHECK' ]; then
   printf '%s\n' "$report" >&2
   echo 'Kernel proofs must check with no unsafe definitions, axioms, or TODOs.' >&2
   exit 1

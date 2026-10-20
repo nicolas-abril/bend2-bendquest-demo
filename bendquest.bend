@@ -13,10 +13,10 @@ law Bq.pick_mode:
   (@+args_0: List<&1, C.Bq.String> -> U32)
 
 law Bq.log_printer:
-  (@+fuel_0: U32 -> (@+lg_1: Chan<C.Bq.String> -> IO(Unit)))
+  (@+fuel_0: U32 -> (@+lg_1: Chan(C.Bq.String) -> IO(Unit)))
 
 law Bq.stat_drain:
-  (@+fuel_0: U32 -> (@+stat_1: Chan<C.Bq.String> -> IO(Unit)))
+  (@+fuel_0: U32 -> (@+stat_1: Chan(C.Bq.String) -> IO(Unit)))
 
 law Bq.headless:
   (@+port_0: U32 -> IO(Unit))
@@ -34,15 +34,15 @@ def Bq.pick_mode():
 
 @unsafe
 def Bq.log_printer():
-  (word => C.Bq.word_case((@+lg_1: Chan<C.Bq.String> -> IO(Unit)), word, 0, (unit => (lg_0 => C.Bq.IO.pure(Unit, Unit{}))), (f_0 => (lg_1 => C.Bq.IO.bind(Result<&1, &1, C.Bq.Pair.Pair(U32, (__2 => C.Bq.String)), C.Bq.String>, Unit, C.Bq.Chan.recv(C.Bq.String, lg_1), \{Done: (line_2 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.print(Support.Bq.List.concat(Char, C.Bq.text("[bendquest] "), line_2)), (__3 => Bq.log_printer(f_0, lg_1)))); \{Fail: (e_2 => C.Bq.IO.pure(Unit, Unit{})); \{}}}))), 1))
+  (word => C.Bq.word_case((@+lg_1: Chan(C.Bq.String) -> IO(Unit)), word, 0, (unit => (lg_0 => C.Bq.IO.pure(Unit, Unit{}))), (f_0 => (lg_1 => C.Bq.IO.bind(Result<&1, &1, C.Bq.Pair.Pair(U32, (__2 => C.Bq.String)), C.Bq.String>, Unit, C.Bq.Chan.recv(C.Bq.String, lg_1), \{Done: (line_2 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.print(Support.Bq.List.concat(Char, C.Bq.text("[bendquest] "), line_2)), (__3 => Bq.log_printer(f_0, lg_1)))); \{Fail: (e_2 => C.Bq.IO.pure(Unit, Unit{})); \{}}}))), 1))
 
 @unsafe
 def Bq.stat_drain():
-  (word => C.Bq.word_case((@+stat_1: Chan<C.Bq.String> -> IO(Unit)), word, 0, (unit => (stat_0 => C.Bq.IO.pure(Unit, Unit{}))), (f_0 => (stat_1 => C.Bq.IO.bind(Result<&1, &1, C.Bq.Pair.Pair(U32, (__2 => C.Bq.String)), C.Bq.String>, Unit, C.Bq.Chan.recv(C.Bq.String, stat_1), \{Done: (line_2 => Bq.stat_drain(f_0, stat_1)); \{Fail: (e_2 => C.Bq.IO.pure(Unit, Unit{})); \{}}}))), 1))
+  (word => C.Bq.word_case((@+stat_1: Chan(C.Bq.String) -> IO(Unit)), word, 0, (unit => (stat_0 => C.Bq.IO.pure(Unit, Unit{}))), (f_0 => (stat_1 => C.Bq.IO.bind(Result<&1, &1, C.Bq.Pair.Pair(U32, (__2 => C.Bq.String)), C.Bq.String>, Unit, C.Bq.Chan.recv(C.Bq.String, stat_1), \{Done: (line_2 => Bq.stat_drain(f_0, stat_1)); \{Fail: (e_2 => C.Bq.IO.pure(Unit, Unit{})); \{}}}))), 1))
 
 @unsafe
 def Bq.headless():
-  (port_0 => C.Bq.IO.bind(Chan<C.Bq.String>, Unit, C.Bq.Chan.new(C.Bq.String, 256), (lg_1 => C.Bq.IO.bind(Chan<U32>, Unit, C.Bq.Chan.new(U32, 8), (ctl_2 => C.Bq.IO.bind(Chan<C.Bq.String>, Unit, C.Bq.Chan.new(C.Bq.String, 64), (stat_3 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.spawn(Bq.log_printer(Support.Bq.U32.MAX_VALUE, lg_1)), (__4 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.spawn(Bq.stat_drain(Support.Bq.U32.MAX_VALUE, stat_3)), (__5 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.print(Support.Bq.List.concat(Char, C.Bq.text("[bendquest] headless server starting on port "), Support.Bq.U32.show(port_0))), (__6 => Server.Bq.server_start(port_0, lg_1, ctl_2, stat_3))))))))))))))
+  (port_0 => C.Bq.IO.bind(Chan(C.Bq.String), Unit, C.Bq.Chan.new(C.Bq.String, 256), (lg_1 => C.Bq.IO.bind(Chan(U32), Unit, C.Bq.Chan.new(U32, 8), (ctl_2 => C.Bq.IO.bind(Chan(C.Bq.String), Unit, C.Bq.Chan.new(C.Bq.String, 64), (stat_3 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.spawn(Bq.log_printer(Support.Bq.U32.MAX_VALUE, lg_1)), (__4 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.spawn(Bq.stat_drain(Support.Bq.U32.MAX_VALUE, stat_3)), (__5 => C.Bq.IO.bind(Unit, Unit, C.Bq.IO.print(Support.Bq.List.concat(Char, C.Bq.text("[bendquest] headless server starting on port "), Support.Bq.U32.show(port_0))), (__6 => Server.Bq.server_start(port_0, lg_1, ctl_2, stat_3))))))))))))))
 
 @unsafe
 def Bq.start():

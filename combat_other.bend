@@ -7,7 +7,7 @@ import ./player_membership.bend as PM
 import ./bindings.bend as Bind
 import ./combat_actor.bend as Actor
 import ./payouts.bend as Pay
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./live_combat.bend as L
 import ./battle.bend as B
 import ./simulation.bend as S

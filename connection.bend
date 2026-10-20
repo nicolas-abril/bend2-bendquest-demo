@@ -4,7 +4,7 @@ import ./players.bend as P
 import ./rebinding.bend as R
 
 type Connection.Record is Type:
-  Connection.Record{cid: U32,phase: U32,pid: U32,out: Chan<List<&1,Char>>,name: List<&1,Char>}
+  Connection.Record{cid: U32,phase: U32,pid: U32,out: Chan(List<&1,Char>),name: List<&1,Char>}
 
 def Connection.descriptor(connection: Connection.Record) -> S.Sessions.State:
   match connection:
@@ -14,7 +14,7 @@ def Connection.repid(connection: Connection.Record,pid: U32) -> Connection.Recor
   match connection:
     case Connection.Record{cid,phase,old,out,name}: Connection.Record{cid,phase,pid,out,name}
 
-def Connection.channel(connection: Connection.Record) -> Chan<List<&1,Char>>:
+def Connection.channel(connection: Connection.Record) -> Chan(List<&1,Char>):
   match connection:
     case Connection.Record{cid,phase,pid,out,name}: out
 
@@ -30,7 +30,7 @@ def Connection.repid_descriptor(connection,pid):
 law Connection.repid_channel:
   for connection: Connection.Record
   for +pid: U32
-  {Connection.channel(Connection.repid(connection,pid)) == Connection.channel(connection) : Chan<List<&1,Char>>}
+  {Connection.channel(Connection.repid(connection,pid)) == Connection.channel(connection) : Chan(List<&1,Char>)}
 
 def Connection.repid_channel(connection,pid):
   match connection:
@@ -38,7 +38,7 @@ def Connection.repid_channel(connection,pid):
 
 # The descriptor is shared data; names in live connection records retain their
 # original affine list representation.
-def Connection.from_descriptor(state: S.Sessions.State,out: Chan<List<&1,Char>>) -> Connection.Record:
+def Connection.from_descriptor(state: S.Sessions.State,out: Chan(List<&1,Char>)) -> Connection.Record:
   match state:
     case S.Sessions.State{cid,phase,pid,name}: Connection.Record{cid,phase,pid,out,P.Players.text_name(name)}
 
@@ -47,7 +47,7 @@ def Connection.descriptors(connections: List<&1,Connection.Record>) -> List<&2,S
     case Nil{}: Nil{}
     case Con{head,rest}: Con{Connection.descriptor(head),Connection.descriptors(rest)}
 
-def Connection.channels(connections: List<&1,Connection.Record>) -> List<&2,Chan<List<&1,Char>>>:
+def Connection.channels(connections: List<&1,Connection.Record>) -> List<&2,Chan(List<&1,Char>)>:
   match connections:
     case Nil{}: Nil{}
     case Con{head,rest}: Con{Connection.channel(head),Connection.channels(rest)}
@@ -85,7 +85,7 @@ def Connection.name_round_trip(name):
 
 law Connection.from_descriptor_exact:
   for +state: S.Sessions.State
-  for +out: Chan<List<&1,Char>>
+  for +out: Chan(List<&1,Char>)
   {Connection.descriptor(Connection.from_descriptor(state,out)) == state : S.Sessions.State}
 
 def Connection.from_descriptor_exact(state,out):
@@ -96,8 +96,8 @@ def Connection.from_descriptor_exact(state,out):
 
 law Connection.from_descriptor_channel:
   for +state: S.Sessions.State
-  for +out: Chan<List<&1,Char>>
-  {Connection.channel(Connection.from_descriptor(state,out)) == out : Chan<List<&1,Char>>}
+  for +out: Chan(List<&1,Char>)
+  {Connection.channel(Connection.from_descriptor(state,out)) == out : Chan(List<&1,Char>)}
 
 def Connection.from_descriptor_channel(state,out):
   match state:
@@ -125,7 +125,7 @@ def Connection.one_descriptor(players,connection):
 law Connection.one_channel:
   for +players: List<&2,P.Players.State>
   for connection: Connection.Record
-  {Connection.channel(Connection.one(players,connection)) == Connection.channel(connection) : Chan<List<&1,Char>>}
+  {Connection.channel(Connection.one(players,connection)) == Connection.channel(connection) : Chan(List<&1,Char>)}
 
 def Connection.one_channel(players,connection):
   match connection:
@@ -156,14 +156,14 @@ def Connection.rebind_descriptors(connections,players):
 law Connection.rebind_channels:
   for connections: List<&1,Connection.Record>
   for +players: List<&2,P.Players.State>
-  {Connection.channels(Connection.rebind(connections,players)) == Connection.channels(connections) : List<&2,Chan<List<&1,Char>>>}
+  {Connection.channels(Connection.rebind(connections,players)) == Connection.channels(connections) : List<&2,Chan(List<&1,Char>)>}
 
 def Connection.rebind_channels(connections,players):
   match connections:
     case Nil{}: {==}
     case Con{head,rest}:
-      %Equal.sym(Chan<List<&1,Char>>,Connection.channel(Connection.one(players,head)),Connection.channel(head),Connection.one_channel(players,head)) : {Con{_,Connection.channels(Connection.rebind(rest,players))} == Con{Connection.channel(head),Connection.channels(rest)} : List<&2,Chan<List<&1,Char>>>}
-      %Connection.rebind_channels(rest,players) : {Con{Connection.channel(head),Connection.channels(Connection.rebind(rest,players))} == Con{Connection.channel(head),_} : List<&2,Chan<List<&1,Char>>>}
+      %Equal.sym(Chan(List<&1,Char>),Connection.channel(Connection.one(players,head)),Connection.channel(head),Connection.one_channel(players,head)) : {Con{_,Connection.channels(Connection.rebind(rest,players))} == Con{Connection.channel(head),Connection.channels(rest)} : List<&2,Chan(List<&1,Char>)>}
+      %Connection.rebind_channels(rest,players) : {Con{Connection.channel(head),Connection.channels(Connection.rebind(rest,players))} == Con{Connection.channel(head),_} : List<&2,Chan(List<&1,Char>)>}
       {==}
 
 law Connection.rebind_names:

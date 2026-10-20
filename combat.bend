@@ -1,8 +1,8 @@
 # Authoritative attack admission and cooldown updates on complete players.
 import Base
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./navigation.bend as N
 
 type Combat.Kind is Data:

@@ -1,9 +1,9 @@
 # Authoritative hero commands lifted to complete player records.
 import Base
-import ./game.bend as G
-import ./health.bend as H
-import ./rewards.bend as R
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/health.bend as H
+import gralha-bendquest@0.1.0.0/rewards.bend as R
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./players.bend as P
 
 # These flags are derived from the operation, never supplied by the wire.

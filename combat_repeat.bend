@@ -11,7 +11,7 @@ import ./combat.bend as C
 import ./payouts.bend as Pay
 import ./combat_actor.bend as Actor
 import ./combat_admitted.bend as Admit
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./live_combat.bend as L
 import ./simulation.bend as S
 import ./terrain.bend as Terrain

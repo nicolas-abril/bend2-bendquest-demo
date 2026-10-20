@@ -3,10 +3,10 @@ import Base
 import ./terrain.bend as T
 import ./navigation.bend as N
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./simulation.bend as S
 import ./ai.bend as A
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 def Locomotion.On(maps: T.Terrain.Maps,player: P.Players.State) -> Data:
   T.Terrain.On<maps,N.Navigation.pos(player)>

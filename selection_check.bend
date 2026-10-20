@@ -40,15 +40,16 @@ def checked(label: String,states: List<&2,S.Sessions.State>,cid: U32,others: Lis
 
 # The channel-bearing legacy adapter is exercised separately from the safe laws.
 @unsafe
-def connection_out(+state: S.Sessions.State,+out: Chan<C.Bq.String>) -> IO(Server.Bq.Conn):
+def connection_out(+state: S.Sessions.State,+out: Chan(C.Bq.String)) -> IO(Server.Bq.Conn):
   do IO<Server.Bq.Conn>:
-    sent : Bool <- Chan.send(C.Bq.String,out,P.Players.text_name(S.Sessions.name(state)))
+    sent_r : Result<&1,&1,C.Bq.String,Unit> <- Chan.send(C.Bq.String,out,P.Players.text_name(S.Sessions.name(state)))
+    sent : Bool = C.Bq.Chan.accepted(C.Bq.String,sent_r)
     IO.pure(Server.Bq.Conn,Server.Bq.connection_from_descriptor(state,out))
 
 @unsafe
 def connection(state: S.Sessions.State) -> IO(Server.Bq.Conn):
   do IO<Server.Bq.Conn>:
-    out : Chan<C.Bq.String> <- Chan.new(C.Bq.String,1)
+    out : Chan(C.Bq.String) <- Chan.new(C.Bq.String,1)
     connection_out(state,out)
 
 @unsafe

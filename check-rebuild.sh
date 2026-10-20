@@ -5,7 +5,7 @@ core=${BEND2_CORE:-../bend2-core}
 rebuild_tmp=$(mktemp -d)
 trap 'rm -rf "$rebuild_tmp"' EXIT HUP INT TERM
 bun "$core/bend2/main.ts" rebuild_check.bend -o "$rebuild_tmp/check.c"
-clang -std=c11 -w -O0 -fno-slp-vectorize "$rebuild_tmp/check.c" -o "$rebuild_tmp/check" \
+clang -std=c11 -w -O1 -fno-slp-vectorize "$rebuild_tmp/check.c" -o "$rebuild_tmp/check" \
   -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
   -framework Cocoa -framework IOKit -framework CoreVideo \
   -framework CoreAudio -framework AudioToolbox

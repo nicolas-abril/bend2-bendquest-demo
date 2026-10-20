@@ -3,7 +3,7 @@ import Base
 import ./cooldown_roster.bend as TC
 import ./players.bend as P
 import ./targeting.bend as T
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./player_membership.bend as PM
 import ./combat_repeat.bend as Repeat
 import ./playerids.bend as Id

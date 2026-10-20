@@ -1,9 +1,9 @@
 # Cardinality of distinct positive naturals bounded by an exact capacity.
 import Base
 import ./nat_cycle.bend as C
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./allocation_search.bend as Search
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 def NatCapacity.length(values: List<&2,Nat>) -> Nat:
   match values:

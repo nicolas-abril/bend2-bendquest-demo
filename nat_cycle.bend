@@ -1,9 +1,9 @@
 # Distinct prefixes of the exact positive natural-number allocation cycle.
 import Base
 import ./word_successor.bend as W
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./allocation_search.bend as Search
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 def NatCycle.Absent(+id: Nat,values: List<&2,Nat>) -> Data:
   match values:

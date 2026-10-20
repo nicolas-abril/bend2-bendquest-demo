@@ -2,9 +2,9 @@ import Base
 import ./terrain.bend as Terrain
 import ./combat.bend as K
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./monsters.bend as M
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./world.bend as W
 import ./compat.bend as C
 import ./simulation.bend as S

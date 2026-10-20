@@ -1,8 +1,8 @@
 # Constructive finite-search completeness for the game's actual ID allocator.
 import Base
 import ./allocation.bend as A
-import ./numeric.bend as N
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/numeric.bend as N
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 # First-match deletion is used only in the cardinality proof, not the allocator.
 def AllocationSearch.cut_gate(equal: Bool,head: U32,rest: A.Allocation.Ids,removed: A.Allocation.Ids) -> A.Allocation.Ids:

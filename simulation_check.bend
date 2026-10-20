@@ -4,8 +4,8 @@ import ./simulation.bend as S
 import ./players.bend as P
 import ./monsters.bend as M
 import ./ai.bend as A
-import ./vitals.bend as V
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./world.bend as W
 import ./compat.bend as C
 import ./support.bend as L

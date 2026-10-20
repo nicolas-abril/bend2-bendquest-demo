@@ -1,7 +1,7 @@
 # Seeded terrain and the cleared corridors used by every generated world.
 import Base
 import ./terrain.bend as T
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./navigation.bend as N
 import ./players.bend as P
 import ./zones.bend as Z

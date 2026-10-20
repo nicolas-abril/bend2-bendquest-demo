@@ -1,9 +1,9 @@
 # Complete player records and checked player-list state transitions.
 import Base
-import ./game.bend as G
-import ./vitals.bend as V
-import ./rewards.bend as R
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/game.bend as G
+import gralha-bendquest@0.1.0.0/vitals.bend as V
+import gralha-bendquest@0.1.0.0/rewards.bend as R
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 type Players.Pos is Data:
   Players.Pos{zone: U32, x: U32, y: U32, dir: U32, moving: U32}

@@ -1,6 +1,6 @@
 # Exact mixed-history prefixes ending at the first actual respawn.
 import Base
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./combat_history.bend as H
 import ./permanent_history.bend as PH
 import ./tick_life.bend as TL
@@ -10,7 +10,7 @@ import ./live_dead.bend as LD
 import ./dead_rewards.bend as Dead
 import ./combat.bend as C
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./ai.bend as A
 import ./roster.bend as R
 import ./zones.bend as Z

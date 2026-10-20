@@ -3,7 +3,7 @@ import Base
 import ./players.bend as P
 import ./playerids.bend as Id
 import ./combat.bend as C
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./cooldown_tick.bend as CD
 import ./simulation.bend as S
 import ./ai.bend as AI

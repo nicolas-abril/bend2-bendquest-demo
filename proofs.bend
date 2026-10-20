@@ -80,11 +80,11 @@ import ./navigation.bend as Navigation
 import ./interactions.bend as Interactions
 import ./payouts.bend as Payouts
 import ./inventory.bend as Inventory
-import ./game.bend as Game
-import ./health.bend as Health
-import ./growth.bend as Growth
-import ./rewards.bend as Rewards
-import ./vitals.bend as Vitals
+import gralha-bendquest@0.1.0.0/game.bend as Game
+import gralha-bendquest@0.1.0.0/health.bend as Health
+import gralha-bendquest@0.1.0.0/growth.bend as Growth
+import gralha-bendquest@0.1.0.0/rewards.bend as Rewards
+import gralha-bendquest@0.1.0.0/vitals.bend as Vitals
 import ./monsters.bend as Monsters
 import ./roster.bend as Roster
 import ./ai.bend as AI

@@ -8,7 +8,7 @@ import ./targeting.bend as T
 import ./playerids.bend as Id
 import ./player_membership.bend as PM
 import ./identity.bend as I
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./connections.bend as C
 
 # Match the server's first-CID lookup, including its old-PID fallback.

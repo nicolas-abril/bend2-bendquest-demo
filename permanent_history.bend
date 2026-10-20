@@ -10,7 +10,7 @@ import ./live_combat.bend as L
 import ./live_dead.bend as LD
 import ./dead_rewards.bend as Dead
 import ./monsters.bend as M
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./ai.bend as A
 import ./roster.bend as R
 import ./zones.bend as Z

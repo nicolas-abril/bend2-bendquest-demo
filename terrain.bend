@@ -1,12 +1,12 @@
 # Shared authoritative maps and tile-gated cardinal movement.
 import Base
 import ./zones.bend as Z
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 import ./players.bend as P
 import ./monsters.bend as M
 import ./simulation.bend as S
 import ./navigation.bend as N
-import ./numeric.bend as Num
+import gralha-bendquest@0.1.0.0/numeric.bend as Num
 
 def Terrain.Map() -> Data: List<&2,U32>
 def Terrain.Maps() -> Data: List<&2,Terrain.Map>

@@ -1,17 +1,17 @@
 # Authoritative AI candidate filtering and target selection.
 import Base
 import ./players.bend as P
-import ./vitals.bend as V
+import gralha-bendquest@0.1.0.0/vitals.bend as V
 import ./terrain.bend as T
 import ./navigation.bend as N
 import ./landscape.bend as L
 import ./interactions.bend as Inter
 import ./pursuit.bend as Q
-import ./numeric.bend as Num
+import gralha-bendquest@0.1.0.0/numeric.bend as Num
 import ./references.bend as Ref
 import ./monsters.bend as M
 import ./planning.bend as Plan
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 type Targeting.Candidate is Data:
   Targeting.Candidate{pid: U32,x: U32,y: U32}

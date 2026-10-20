@@ -7,7 +7,7 @@ import ./interactions.bend as I
 import ./world.bend as W
 import ./players_check.bend as Test
 import ./interactions_check.bend as IT
-import ./game.bend as G
+import gralha-bendquest@0.1.0.0/game.bend as G
 
 def sizes(maps: T.Terrain.Maps) -> Bool:
   match maps:

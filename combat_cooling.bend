@@ -15,7 +15,7 @@ import ./live_combat.bend as L
 import ./simulation.bend as S
 import ./terrain.bend as Terrain
 import ./admission.bend as J
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./cooldown_actor.bend as Tracked
 import ./cooldown_roster.bend as TC
 import ./live_tick.bend as Tick

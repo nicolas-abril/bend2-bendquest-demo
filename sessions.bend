@@ -1,6 +1,6 @@
 # Pure connection lifecycle decisions used by the effectful server adapter.
 import Base
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 import ./allocation.bend as Alloc
 
 type Sessions.State is Data:

@@ -13,6 +13,28 @@ type Bq.TCP is Data:
 type Bq.Bytes is Type:
   Bq.Bytes.Bytes{len: U32, data: List<U32>}
 
+# The game uses character lists for both sprite rows and editable text.
+def Bq.text(s: String) -> Bq.String:
+  match s:
+    case SNil{}:
+      Nil{}
+    case SCon{h, t}:
+      Con{h, Bq.text(t)}
+
+def Bq.untext(s: Bq.String) -> String:
+  match s:
+    case Nil{}:
+      SNil{}
+    case Con{h, t}:
+      SCon{h, Bq.untext(t)}
+
+def Bq.res_text(r: Result<&1, &1, U32 & String, String>) -> Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Bq.String>:
+  match r:
+    case Done{s}:
+      Done{Bq.text(s)}
+    case Fail{(code, msg)}:
+      Fail{Tuple{code, Bq.text(msg)}}
+
 @unsafe
 def Bq.word_pick(-R: Type, eq: Bool, +n: U32, z: @+u: Unit -> R, s: @+n: U32 -> R, sub: U32) -> R:
   match eq:
@@ -49,16 +71,37 @@ def Bq.IO.timeout(-A: Type, +ms: U32, +act: IO(A)) -> IO(Result<&1, &1, Bq.Pair.
     x => IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), A>, Done{x}))
 
 @unsafe
-def Bq.Chan.new(-A: Type, +room: U32) -> IO(Chan<A>):
+def Bq.Chan.new(-A: Type, +room: U32) -> IO(Chan(A)):
   Chan.new(A, room)
 
 @unsafe
-def Bq.Chan.close(-A: Type, +c: Chan<A>) -> IO(Bool):
+def Bq.Chan.close(-A: Type, +c: Chan(A)) -> IO(Bool):
   IO.bind(Unit, Bool, Chan.close(A, c), u => IO.pure(Bool, True{}))
 
+# A send that would wait fails with EAGAIN instead; a closed channel fails
+# with EPIPE.
 @unsafe
-def Bq.Chan.send(-A: Type, +c: Chan<A>, +x: A) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>):
-  import "./effs/compat.c"
+def Bq.Chan.sent(-A: Type, p: Poll<&1, &1, Result<&1, &1, A, Unit>, A>) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>):
+  match p:
+    case Ready{Done{u}}:
+      IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>, Done{Unit{}})
+    case Ready{Fail{v}}:
+      IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>, Fail{Tuple{32, Bq.text("channel closed")}})
+    case Wait{v}:
+      IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>, Fail{Tuple{35, Bq.text("channel full")}})
+
+@unsafe
+def Bq.Chan.send(-A: Type, +c: Chan(A), +x: A) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>):
+  IO.bind(Poll<&1, &1, Result<&1, &1, A, Unit>, A>, Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), Unit>,
+    Chan.try_send(A, c, x, 0), p => Bq.Chan.sent(A, p))
+
+# Base's Chan.send answers Done{} or, on a closed channel, Fail{value}.
+def Bq.Chan.accepted(-A: Type, r: Result<&1, &1, A, Unit>) -> Bool:
+  match r:
+    case Done{u}:
+      True{}
+    case Fail{v}:
+      False{}
 
 @unsafe
 def Bq.Chan.result(-A: Type, +m: Maybe<A>) -> Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), A>:
@@ -69,13 +112,25 @@ def Bq.Chan.result(-A: Type, +m: Maybe<A>) -> Result<&1, &1, Bq.Pair.Pair(U32, _
       Done{x}
 
 @unsafe
-def Bq.Chan.recv(-A: Type, +c: Chan<A>) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), A>):
+def Bq.Chan.recv(-A: Type, +c: Chan(A)) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), A>):
   IO.bind(Maybe<A>, Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), A>, Chan.recv(A, c),
     m => IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, _ => Bq.String), A>, Bq.Chan.result(A, m)))
 
 @unsafe
-def Bq.Chan.poll(-A: Type, +c: Chan<A>) -> IO(Result<&1, &1, Unit, A>):
-  import "./effs/compat.c"
+def Bq.Chan.polled(-A: Type, p: Poll<&1, &1, Maybe<A>, Unit>) -> Result<&1, &1, Unit, A>:
+  match p:
+    case Ready{Some{x}}:
+      Done{x}
+    case Ready{None{}}:
+      Fail{Unit{}}
+    case Wait{u}:
+      Fail{Unit{}}
+
+# A receive that answers Fail instead of waiting on an empty channel.
+@unsafe
+def Bq.Chan.poll(-A: Type, +c: Chan(A)) -> IO(Result<&1, &1, Unit, A>):
+  IO.bind(Poll<&1, &1, Maybe<A>, Unit>, Result<&1, &1, Unit, A>, Chan.try_recv(A, c, 0),
+    p => IO.pure(Result<&1, &1, Unit, A>, Bq.Chan.polled(A, p)))
 
 @unsafe
 def Bq.Bytes.length(+xs: List<U32>) -> U32:
@@ -128,45 +183,109 @@ def Bq.Bytes.from_string(+s: Bq.String) -> Bq.Bytes:
 def Bq.Bytes.to_string(+b: Bq.Bytes) -> Bq.String:
   Bq.Bytes.decode(Bq.Bytes.to_list(b))
 
+# Wall-clock seconds; Base's IO.now is a monotonic clock.
 @unsafe
 def Bq.IO.now() -> IO(U32):
   import "./effs/compat.c"
 
 @unsafe
 def Bq.IO.now_ms() -> IO(U32):
-  import "./effs/compat.c"
+  IO.bind(Nat, U32, IO.now(), n => IO.pure(U32, U32.from_nat(n)))
 
 @unsafe
 def Bq.IO.print(+text_0: Bq.String) -> IO(Unit):
-  import "./effs/compat.c"
+  IO.print(Bq.untext(text_0))
 
 @unsafe
 def Bq.IO.print_err(+text_0: Bq.String) -> IO(Unit):
-  import "./effs/compat.c"
+  IO.print_err(Bq.untext(text_0))
 
 @unsafe
+def Bq.IO.args_of(r: Result<&1, &1, U32 & String, String>) -> List<&1, Bq.String>:
+  match r:
+    case Done{p}:
+      [Bq.text("server"), Bq.text(p)]
+    case Fail{e}:
+      []
+
+# run.sh passes server mode as BQ_SERVER_PORT: ["server", port], else [].
+@unsafe
 def Bq.IO.args() -> IO(List<&1, Bq.String>):
-  import "./effs/compat.c"
+  IO.bind(Result<&1, &1, U32 & String, String>, List<&1, Bq.String>, IO.get_env("BQ_SERVER_PORT"),
+    r => IO.pure(List<&1, Bq.String>, Bq.IO.args_of(r)))
 
 @unsafe
 def Bq.IO.get_env(+name_0: Bq.String) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.String>):
-  import "./effs/compat.c"
+  IO.bind(Result<&1, &1, U32 & String, String>, Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.String>,
+    IO.get_env(Bq.untext(name_0)), r => IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.String>, Bq.res_text(r)))
+
+@unsafe
+def Bq.IO.read_rest(file: File, acc: String) -> IO(Result<&1, &1, U32 & String, String>):
+  IO.bind(File & Result<&1, &1, U32 & String, String>, Result<&1, &1, U32 & String, String>,
+    File.read(file, 1048576), fr => Bq.IO.read_more(fr, acc))
+
+@unsafe
+def Bq.IO.read_more(fr: File & Result<&1, &1, U32 & String, String>, acc: String) -> IO(Result<&1, &1, U32 & String, String>):
+  (file, r) = fr
+  match r:
+    case Fail{e}:
+      IO.bind(Unit, Result<&1, &1, U32 & String, String>, File.close(file),
+        u => IO.pure(Result<&1, &1, U32 & String, String>, Fail{e}))
+    case Done{SNil{}}:
+      IO.bind(Unit, Result<&1, &1, U32 & String, String>, File.close(file),
+        u => IO.pure(Result<&1, &1, U32 & String, String>, Done{acc}))
+    case Done{chunk}:
+      Bq.IO.read_rest(file, acc ++ chunk)
+
+@unsafe
+def Bq.IO.read_opened(r: Result<&1, &1, U32 & String, File>) -> IO(Result<&1, &1, U32 & String, String>):
+  match r:
+    case Fail{e}:
+      IO.pure(Result<&1, &1, U32 & String, String>, Fail{e})
+    case Done{file}:
+      Bq.IO.read_rest(file, "")
 
 @unsafe
 def Bq.IO.read_text(+path_0: Bq.String) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.String>):
-  import "./effs/compat.c"
+  IO.bind(Result<&1, &1, U32 & String, String>, Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.String>,
+    IO.bind(Result<&1, &1, U32 & String, File>, Result<&1, &1, U32 & String, String>,
+      File.open(Bq.untext(path_0), "r"), Bq.IO.read_opened),
+    r => IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.String>, Bq.res_text(r)))
 
+# Replaces the file atomically (a temporary file and a rename), which Base's
+# File effects cannot do.
 @unsafe
 def Bq.IO.write_text(+path_0: Bq.String, +text_1: Bq.String) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, (__2 => Bq.String)), Unit>):
   import "./effs/compat.c"
 
 @unsafe
-def Bq.IO.rand_word() -> IO(U32):
-  import "./effs/compat.c"
+def Bq.IO.rand_of(r: Result<&1, &1, U32 & String, U32>) -> U32:
+  match r:
+    case Done{x}:
+      x
+    case Fail{e}:
+      0
 
 @unsafe
+def Bq.IO.rand_word() -> IO(U32):
+  IO.bind(Result<&1, &1, U32 & String, U32>, U32, IO.random_u32(), r => IO.pure(U32, Bq.IO.rand_of(r)))
+
+@unsafe
+def Bq.IO.exec_of(r: Result<&1, &1, U32 & String, U32 & (String & String)>) -> Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.Bytes>:
+  match r:
+    case Fail{(code, msg)}:
+      Fail{Tuple{code, Bq.text(msg)}}
+    case Done{(0, (out, err))}:
+      Done{Bq.Bytes.from_string(Bq.text(out))}
+    case Done{(status, (out, err))}:
+      Fail{Tuple{5, Bq.text(err)}}
+
+# The shell command's stdout; a nonzero exit status fails with EIO.
+@unsafe
 def Bq.IO.exec(+cmd_0: Bq.String) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.Bytes>):
-  import "./effs/compat.c"
+  IO.bind(Result<&1, &1, U32 & String, U32 & (String & String)>, Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.Bytes>,
+    Process.run("/bin/sh", ["-c", Bq.untext(cmd_0)], "", 1048576, 10000),
+    r => IO.pure(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.Bytes>, Bq.IO.exec_of(r)))
 
 @unsafe
 def Bq.TCP.listen(+port_0: U32) -> IO(Result<&1, &1, Bq.Pair.Pair(U32, (__1 => Bq.String)), Bq.TCP>):
@@ -198,15 +317,7 @@ def Bq.word_and(a: U32, b: U32) -> U32:
 def Bq.word_or(a: U32, b: U32) -> U32:
   Bq.bit(Bool.or(U32.is_ne(a, 0), U32.is_ne(b, 0)))
 
-# The game uses character lists for both sprite rows and editable text.
-def Bq.text(s: String) -> Bq.String:
-  match s:
-    case SNil{}:
-      Nil{}
-    case SCon{h, t}:
-      Con{h, Bq.text(t)}
-
 # A standalone game owns the process. Spawned readers may still be parked
 # after the window closes; finish after the game's shutdown action returns.
 def Bq.IO.finish() -> IO(Unit):
-  import "./effs/compat.c"
+  IO.exit(0)

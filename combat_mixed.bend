@@ -13,7 +13,7 @@ import ./combat_other.bend as Other
 import ./combat_foreign.bend as Foreign
 import ./combat_clock.bend as CC
 import ./world_clock.bend as Clock
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 law Mixed.restored:
   for +world: T.Terrain.World

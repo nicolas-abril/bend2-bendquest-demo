@@ -8,7 +8,7 @@ import ./player_membership.bend as PM
 import ./playerids.bend as Id
 import ./allocation.bend as A
 import ./admission.bend as J
-import ./numeric.bend as N
+import gralha-bendquest@0.1.0.0/numeric.bend as N
 
 law Bindings.head_member:
   for +session: P.Players.State
