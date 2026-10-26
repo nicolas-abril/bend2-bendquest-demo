@@ -1,87 +1,69 @@
 # Spike: proves the raylib wrapper end to end -- window, draw-list
 # frame, text, input poll, clean shutdown. Runs ~180 frames then exits
-# (or Esc / close button).
-#   bend spike.bend -o spike && ./spike
+# (or Esc / close button). Links raylib like build.sh:
+#   bun ../bend2-core/bend2/main.ts spike.bend -o .build/spike.c
+#   clang -std=c11 -w -O1 .build/spike.c -o .build/spike \
+#     -I/opt/homebrew/include -L/opt/homebrew/lib -lraylib -lpthread -lm \
+#     -framework Cocoa -framework IOKit -framework CoreVideo \
+#     -framework CoreAudio -framework AudioToolbox
 
-import ../../bend3/bend-base/Base
-import ./raylib
+import Base
+import gralha-raylib@0.1.0.0/raylib.bend as RL
 
-def text_cmd(x: U32, y: U32, size: U32, color: U32, s: String) -> List(U32):
-  cps = List.map(Char, U32, c => Char.code(c), s)
-  n = List.length(U32, cps)
-  [3, x, y, size, color, n] ++ cps
+def frame_cmds(+t: U32) -> List<U32>:
+  List.append(&1, U32, RL.clear(1710638),
+  List.append(&1, U32, RL.rect((40 + U32.mod(t, 400) : U32), 100, 60, 60, 16739229),
+  List.append(&1, U32, RL.rect_lines(40, 200, 200, 80, 65450),
+  List.append(&1, U32, RL.circle(400, 300, 30, 16765286),
+  List.append(&1, U32, RL.sprite(0, 0, 0, 4, 4, 500, 100, 4096, 0, 16777215),
+  List.append(&1, U32, RL.sprite(0, 0, 0, 4, 4, 600, 100, 4096, 1, 16777215),
+  RL.text(40, 40, 30, 16777215, "BendQuest raylib spike")))))))
 
-def frame_cmds(t: U32) -> List(U32):
-  List.flatten(U32, [
-    [0, 0x1A1A2E],
-    [1, 40 + (t % 400), 100, 60, 60, 0xFF6B9D],
-    [2, 40, 200, 200, 80, 0x00FFAA],
-    [4, 400, 300, 30, 0xFFD166],
-    [6, 0, 0, 0, 4, 4, 500, 100, 16 * 256, 0, 0xFFFFFF],
-    [6, 0, 0, 0, 4, 4, 600, 100, 16 * 256, 1, 0xFFFFFF],
-    text_cmd(40, 40, 30, 0xFFFFFF, "BendQuest raylib spike")])
+# A 4x4 RGBA test texture: magenta/teal checker with one red corner.
+def checker_px(+i: U32) -> List<U32>:
+  +even = U32.is_eq(U32.mod((U32.mod(i, 4) + U32.div(i, 4) : U32), 2), 0)
+  Bool.pick(List<U32>, U32.is_eq(i, 0), [255, 0, 0, 255],
+    Bool.pick(List<U32>, even, [255, 0, 255, 255], [0, 200, 180, 255]))
 
-# a 4x4 RGBA test texture: magenta/teal checker with one red corner
-def checker_px(i: U32) -> List(U32):
-  x = (i % 4)
-  y = (i / 4)
-  match i == 0:
-    case Bool.T{}:
-      [255, 0, 0, 255]
-    case Bool.F{}:
-      match ((x + y) % 2) == 0:
-        case Bool.T{}:
-          [255, 0, 255, 255]
-        case Bool.F{}:
-          [0, 200, 180, 255]
-
-def checker_go(k: U32) -> List(U32):
+def checker_go(+k: Nat) -> List<U32>:
   match k:
-    case 0:
+    case 0n:
       []
-    case 1+j:
-      checker_px(15 - j) ++ checker_go(j)
+    case 1n+j:
+      List.append(&1, U32, checker_px((15 - U32.from_nat(j) : U32)), checker_go(j))
 
-def checker() -> Bytes:
-  Bytes.pack(checker_go(16))
+def esc_held(ws: List<U32>) -> Bool:
+  RL.bit(RL.first(ws), 11n)
 
-def esc_held(ws: List(U32)) -> Bool:
-  match ws:
-    case List.Nil{}:
-      Bool.F{}
-    case List.Cons{held, rest}:
-      Bool.from_u32((held >> 11) .&. 1)
+def maybe_shot(+shoot: Bool) -> IO(Unit):
+  match shoot:
+    case True{}:
+      RL.screenshot("spike_frame.png")
+    case False{}:
+      IO.pure(Unit, Unit{})
 
-def maybe_shot(f: U32) -> IO(Unit):
-  match f == 60:
-    case Bool.T{}:
-      rl_screenshot("spike_frame.png")
-    case Bool.F{}:
-      IO.pure(Unit, Unit.U{})
-
-def loop(fuel: U32, t: U32) -> IO(Unit):
+def loop(+fuel: Nat, +stop: Bool, +t: U32) -> IO(Unit):
   match fuel:
-    case 0:
-      IO.pure(Unit, Unit.U{})
-    case 1+f:
-      do IO(Unit):
-        rl_frame(frame_cmds(t))
-        inp <- rl_input()
-        maybe_shot(f)
-        stop1 <- rl_should_close()
-        match Bool.or(stop1, esc_held(inp)):
-          case Bool.T{}:
-            IO.pure(Unit, Unit.U{})
-          case Bool.F{}:
-            do IO(Unit):
-              IO.sleep(16)
-              loop(f, t + 4)
+    case 0n:
+      IO.pure(Unit, Unit{})
+    case 1n+f:
+      match stop:
+        case True{}:
+          IO.pure(Unit, Unit{})
+        case False{}:
+          do IO<Unit>:
+            RL.frame(frame_cmds(t))
+            inp : List<U32> <- RL.input()
+            maybe_shot(Nat.is_eq(f, 60n))
+            closed : Bool <- RL.should_close()
+            IO.sleep(16)
+            loop(f, closed || esc_held(inp), (t + 4 : U32))
 
 def main() -> IO(Unit):
-  do IO(Unit):
-    rl_init("bendquest spike", 800, 600)
-    tex <- rl_tex_load(4, 4, checker())
+  do IO<Unit>:
+    RL.open("bendquest spike", 800, 600)
+    tex : U32 <- RL.texture(4, 4, checker_go(16n))
     IO.print("tex id: " ++ U32.show(tex))
-    loop(180, 0)
-    rl_shutdown()
+    loop(180n, False{}, 0)
+    RL.close()
     IO.print("spike ok")

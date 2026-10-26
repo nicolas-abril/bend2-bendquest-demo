@@ -95,9 +95,11 @@ The optional UI font is VT323 by Peter Hull / The VT323 Project Authors,
 licensed under the SIL Open Font License 1.1. Raylib's default font is used
 when `font.ttf` is absent.
 
-`NOTES.md`, `PAPERCUTS.md`, and the standalone `gallery.bend`, `spike.bend`,
-and `srvmain.bend` files retain their original Bend3 history and syntax.
-Use `main.bend` and the scripts above for the current game.
+`NOTES.md` and `PAPERCUTS.md` retain their original Bend3 history. The
+standalone dev programs are current Bend: `spike.bend` (a raylib smoke run),
+`gallery.bend` (every sprite, screenshotted) and `srvmain.bend` (the headless
+server on port 4977). Their headers give the build commands. Use `main.bend`
+and the scripts above for the current game.
 
 ## Additional world proofs
 
